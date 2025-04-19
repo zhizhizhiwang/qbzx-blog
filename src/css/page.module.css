@@ -108,6 +108,24 @@ a.secondary {
   flex-shrink: 0;
 }
 
+.footer ul {
+  list-style-type: none;
+  /* 去掉列表前的点 */
+  padding: 0;
+}
+
+.footer ul li {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.githubIcon {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
@@ -165,4 +183,5 @@ a.secondary {
   .logo {
     filter: invert();
   }
+
 }
