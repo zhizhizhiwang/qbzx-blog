@@ -1,12 +1,12 @@
 import Title from "@/item/title";
+export const runtime = 'edge';
 
 interface PageProps {
-    params: { id: string };
-    searchParams: { [key: string]: string | string[] | undefined }
+    params: Promise<{ id: string }>;
 }
 
-export default function Post({ params, searchParams }: PageProps) {
-    const { id } = params;
+export default async function Post({ params }: PageProps) {
+    const { id } = await params;
 
     return (
         <>
