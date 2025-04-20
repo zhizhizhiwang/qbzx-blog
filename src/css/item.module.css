@@ -1,0 +1,25 @@
+
+.title {
+    text-align: left;
+    /* 使用 Flexbox 布局 */
+    margin-top: 30px;
+
+    max-width: 80%;
+    /* 字体大一些 */
+    font-size: 2rem;
+    /* 阴影效果 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* 斜体 */
+    font-style: italic;
+    /* 文字颜色 */
+    color: #333;
+    /* 添加一个过渡效果，使 hover 效果更平滑 */
+    transition: all 0.3s ease;
+}
+
+.title:hover {
+    /* 鼠标悬停时阴影效果更明显 */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+    /* 稍微改变文字颜色 */
+    color: #0070f3;
+}

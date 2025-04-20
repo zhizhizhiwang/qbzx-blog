@@ -32,7 +32,11 @@ export default function Footer() {
             
                 <ul>
                     <li>
-                        <center>本作品采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0国际许可协议</a>进行许可。
+                        
+                        <center>
+                            此网站完全由学生运营
+                            <br />
+                            本作品采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0国际许可协议</a>进行许可。
                         </center>
                     </li>
                     <li>
@@ -46,7 +50,7 @@ export default function Footer() {
                     />
                     想要加入或者提出建议?
                     </a> 
-                    <a href="" target="_blank" rel="noopener noreferrer">
+                    <a href="/supporters" target="_blank" rel="noopener noreferrer">
                     <Image
                     src="/Git-Icon.svg"
                     alt='git'
