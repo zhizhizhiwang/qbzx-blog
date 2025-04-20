@@ -1,10 +1,11 @@
 import Title from "@/item/title";
 
-interface Props {
+interface PageProps {
     params: { id: string };
+    searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function Post({ params }: Props) {
+export default function Post({ params, searchParams }: PageProps) {
     const { id } = params;
 
     return (
