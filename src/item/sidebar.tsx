@@ -24,8 +24,6 @@ export default function Sidebar({ page, title, author, items = [], hrefs = [] }:
     return (
         <div className={styles.sidebar}>
             <h2>{title}</h2>
-            <p>作者: {author.join(", ")}</p>
-            <br />
             <ul>
                 {actually_items.map((item, index) => (
                     <li key={index}>
@@ -33,6 +31,7 @@ export default function Sidebar({ page, title, author, items = [], hrefs = [] }:
                     </li>
                 ))}
             </ul>
+            <p>作者: {author.join(", ")}</p>
         </div>
     );
 

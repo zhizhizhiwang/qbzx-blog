@@ -11,7 +11,8 @@
   /* grid-template-rows: 20px 1fr 20px; */ /* 注释掉 grid 的行模板 */
   align-items: center; /* 水平居中 */
   /* justify-items: center; */ /* 移除垂直方向的居中 */
-  min-height: 100svh;
+  min-height: 200vh;
+  overflow: visible;
   padding: 80px;
   gap: 64px;
   font-family: var(--font-geist-sans);
@@ -134,11 +135,9 @@ a.secondary {
 }
 
 .container {
-  display: flex;
-  /* 使用 Flexbox 布局 */
   margin: 20px;
   /* 添加一些外边距 */
-  min-height: 100vh;
+  min-height: 100%;
   /* 确保容器至少占满视口高度 */  
 
 }
@@ -152,11 +151,19 @@ a.secondary {
 }
 
 .sidebar {
-  width: 250px;
+  /* 改成顶栏 */
+  display: grid; 
+  grid-template-columns: 7fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 0.2fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . . . ."; 
+  width: 100%;
+  height: 5rem;
   /* 侧边栏宽度 */
   background-color: var(--common-background);
   /* 侧边栏背景色为白色 */
-  padding: 15px;
+  padding: 10px;
   border-radius: 8px;
   /* 圆角边框 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -164,13 +171,16 @@ a.secondary {
   z-index: 1;
   /* 确保在其他元素之上 */
   line-height: 1.7rem;
-  min-height: 100vh;
   /* 侧边栏高度为视口高度 */
   right: 20px;
 
-  position: -webkit-sticky;
   position: sticky;
-  top: 10px;
+  position: -webkit-sticky;
+  /* 改为静态定位 */
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  /* 水平居中 */
 }
 
 .sidebar h2 {
@@ -181,10 +191,13 @@ a.secondary {
   list-style-type: none;
   /* 去掉列表前的点 */
   padding: 0;
+  display: grid; /* 使用 Grid 布局 */
+  grid-template-columns: repeat(auto-fit, minmax(50px, auto)); /* 自动调整列数 */
+  gap: 10px; /* 标签之间的间距 */
 }
 
 .sidebar ul li {
-  margin: 10px 0;
+  margin: 0;
 }
 
 .sidebar ul li a {
