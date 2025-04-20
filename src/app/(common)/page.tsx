@@ -2,12 +2,13 @@ import Image from "next/image";
 import styles from "@/css/page.module.css";
 import Footer from "@/item/footer";
 import Title from "@/item/title";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
 
-      <Title text="QBZX BBS" subtitle="欢迎来到QBbs" />
+      <Title text="QBBS" subtitle="qbzx bbs by zhizhiwang" />
       <div className={styles.page}> 
         <main className={styles.main}>
           <div className={styles.ctas}>
