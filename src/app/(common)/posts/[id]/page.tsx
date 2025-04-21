@@ -1,88 +1,37 @@
-import path from 'path';
-import fs from 'fs/promises';
-import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
-import Title from "@/item/title";
-import { promises } from 'dns';
+// src/app/(common)/posts/[id]/page.tsx (动态路由页面)
+import { getPostData } from '@/lib/posts'; // 导入上面创建的函数
+import { notFound } from 'next/navigation'; // 用于处理未找到文章的情况
 
-export const runtime = 'edge';
-
-interface PostProps {
-    params: Promise<{ id: string }>;
-    post: {
-        title: string;
-        content: string;
+// PageProps 类型定义 (如果需要的话，通常可以直接在函数签名中定义)
+interface PageProps {
+    params: {
+        id: string;
     };
 }
 
-async function getPostContent(id: string) {
-    const filePath = path.join(process.cwd(), 'posts', `${id}.md`);
-    try {
-        const fileContent = await fs.readFile(filePath, 'utf8');
-        const matterResult = matter(fileContent);
-
-        const processedContent = await remark()
-            .use(html)
-            .process(matterResult.content);
-        const contentHtml = processedContent.toString();
-
-        return {
-            id,
-            contentHtml,
-            title: matterResult.data.title || id, // 使用文件名作为默认标题
-        };
-    } catch (error) {
-        console.error(`Error reading or processing post ${id}:`, error);
-        return null;
-    }
-}
-
-
-export async function getStaticPaths() {
-    const postsDirectory = path.join(process.cwd(), 'posts');
-    const filenames = await fs.readdir(postsDirectory);
-
-    const paths = filenames
-        .filter(filename => filename.endsWith('.md'))
-        .map(filename => {
-            const id = filename.replace(/\.md$/, '');
-            return {
-                params: {
-                    id,
-                },
-            };
-        });
-
-    return {
-        paths,
-        fallback: false, // 如果路径不存在，显示 404 页面
-    };
-}
-
-export async function getStaticProps({ params }: { params: { id: string } }) {
-    const post = await getPostContent(params.id);
+// Server Component
+const PostPage = async ({ params }: PageProps) => {
+    const post = getPostData(params.id); // 在构建时/服务器端执行文件读取
 
     if (!post) {
-        return {
-            notFound: true,
-        };
+        notFound(); // 如果文章不存在，返回 404
     }
 
-    return {
-        props: {
-            post,
-        },
-    };
-}
-
-export default async function Post({ post }: { post: { title: string, content: string } }) {
     return (
-        <>
-            <Title text={`文章 ${post.title}`} subtitle={`文章详情 ${post.title}`} />
-            <div>
-                <div dangerouslySetInnerHTML={{ __html: post.content }} />
-            </div>
-        </>
+        <div>
+            <h1>{post.title}</h1> {/* 假设 frontmatter 中有 title */}
+            <div dangerouslySetInnerHTML={{ __html: post.content }} /> {/* 渲染 markdown 内容 (注意安全风险，通常会先将 markdown 转为 HTML) */}
+        </div>
     );
+};
+
+export default PostPage;
+
+
+// src/app/(common)/posts/[id]/generateStaticParams.ts (生成静态参数)
+import { getAllPostSlugs } from '@/lib/posts'; // 导入获取 slug 的函数
+
+export async function generateStaticParams() {
+    // 这个函数在构建时运行，用于确定要静态生成的动态路由
+    return getAllPostSlugs(); // 返回一个数组，每个元素是 { params: { id: string } }
 }
