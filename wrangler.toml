@@ -7,3 +7,4 @@ pages_build_output_dir = ".vercel/output/static"
 [env.production.vars]
 NEXTAUTH_SECRET = "023428d7d1f5225a60e341d6ff0369cf"
 NODE_VERSION = "22" 
+
