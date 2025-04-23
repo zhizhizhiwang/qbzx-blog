@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
     // 这通常不推荐，因为它可能隐藏潜在的代码问题，但可以用于你当前的情况。
     ignoreDuringBuilds: true,
   },
+
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+      };
+    }
+
+    return config;
+  },
 };
 
 if (process.env.NODE_ENV === "development") {
