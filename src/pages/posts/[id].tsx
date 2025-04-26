@@ -30,7 +30,9 @@ export default function TestPage({ id, content, data }: TestPageProps) {
                 <div className={styles.content}>
                     <>
                         <Title text={id} />
-                        {JSON.stringify(data)}
+                        {content.split('\n').map((line, index) => (
+                            <p key={index} className={styles.postContent}>{line}</p>
+                        ))}
                     </>
                 </div>
             </div>
