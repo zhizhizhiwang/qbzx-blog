@@ -159,11 +159,13 @@ a.secondary {
   grid-template-areas: 
     ". . . . ."; 
   width: 100%;
-  height: 5rem;
+  height: 3rem;
   /* 侧边栏宽度 */
   background-color: var(--common-background);
   /* 侧边栏背景色为白色 */
+  list-style: none;
   padding: 10px;
+  padding-left: 1rem;
   border-radius: 8px;
   /* 圆角边框 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -173,7 +175,7 @@ a.secondary {
   line-height: 1.7rem;
   /* 侧边栏高度为视口高度 */
   right: 20px;
-
+  white-space: nowrap;
   position: sticky;
   position: -webkit-sticky;
   /* 改为静态定位 */

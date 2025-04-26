@@ -1,6 +1,7 @@
 // src/app/(common)/blog/page.tsx (博客列表页面)
 import Link from 'next/link';
 import { getAllPostsMetadata } from '@/lib/posts'; // 导入获取元数据的函数
+import Title from '@/item/title';
 // export const runtime = 'edge';
 
 const  BlogListPage = async () =>  {
@@ -8,7 +9,7 @@ const  BlogListPage = async () =>  {
 
     return (
         <div>
-            <h1>所有文章</h1>
+            <Title text='所有文章'/>
             <ul>
                 
             </ul>

@@ -1,4 +1,5 @@
 import styles from "@/css/page.module.css";
+import itemstyle from "@/css/item.module.css";
 import Link from "next/link";
 
 interface SidebarProps {
@@ -23,15 +24,19 @@ export default function Sidebar({ page, title, author, items = [], hrefs = [] }:
     
     return (
         <div className={styles.sidebar}>
-            <h2>{title}</h2>
-            <ul>
-                {actually_items.map((item, index) => (
-                    <li key={index}>
-                        <Link href={actually_href[index]}>{item}</Link>
-                    </li>
-                ))}
-            </ul>
-            <p>作者: {author.join(", ")}</p>
+            <h2 className={itemstyle.title}>{title}</h2>
+            <div className={itemstyle.menu_item}>
+                <span>菜单</span>
+                <div className={itemstyle.arrow }></div>
+                <ul className={itemstyle.submenu}>
+                    {actually_items.map((item, index) => (
+                        <li key={index} value={item} >
+                            <Link href={actually_href[index]} className={itemstyle.menu_link} >{item}</Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <span>作者: {author.join(", ")}</span>
         </div>
     );
 
