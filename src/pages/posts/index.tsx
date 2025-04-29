@@ -46,18 +46,26 @@ export default function BlogListPage({ allPostsData }: BlogListPageProps) {
 export async function getStaticProps() {
     const fs = await require('fs');
     const path = await require('path');
+    const matter = await require('gray-matter');
+
     const postsDirectory = path.join('public', 'posts');
     const fileNames = fs.readdirSync(postsDirectory);
+
+
     const allPostsData = fileNames.map((fileName: string) => {
-        const id = fileName.replace(/\.md$/, '');
+        const fullPath = path.join(postsDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const matterResult = matter(fileContents);
+        const id =  matterResult.data.title || fileName.replace(/\.md$/, '');
         return {
             id,
-            href: `/posts/${id}`,
+            href: `/posts/${fileName.replace(/\.md$/, '')}`,
         };
     });
+
     return {
         props: {
-            allPostsData,
+            allPostsData: allPostsData,
         },
     };
 }

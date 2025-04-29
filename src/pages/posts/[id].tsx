@@ -22,7 +22,6 @@ interface TestPageProps {
     date: string;
     author: string;
     tags: string[];
-    data: PostData;
 }
 
 const mathJaxConfig = {
@@ -59,7 +58,8 @@ const markdownComponents = {
     }
 } as Partial<Components>;
 
-export default function TestPage({ id, content, title, date, author, tags, data }: TestPageProps) {
+export default function TestPage({ id, content, title, date, author, tags }: TestPageProps) {
+
     return (
         <div>
             <div className={styles.container}>
@@ -71,7 +71,8 @@ export default function TestPage({ id, content, title, date, author, tags, data 
                     hrefs={["/posts", "/about"]}
                 />
                 <div className={styles.content}>
-                    <Title text={title} subtitle={"更新时间: " + date} />
+                    <Title text={title} subtitle={"by: " + author} />
+                    <span>更新时间: {date}</span>
                     <MathJaxContext config={{
                         tex: { packages: ['base', 'ams'] },
                         tex2jax: {
@@ -110,10 +111,12 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
 
     let fileContents = fs.readFileSync(fullPath, 'utf8');
     const matterResult = matter(fileContents);
-    const stat = fs.statSync(fullPath);
 
+    const stat = fs.statSync(fullPath);
     const title = matterResult.data.title || id;
-    const date = matterResult.data.date || `${stat.mtime.toLocaleDateString()}  ${stat.mtime.toLocaleTimeString()}`;
+    const dateObj = matterResult.data.date || stat.mtime;
+    const date = new Date(dateObj);
+    const dateString = date.toLocaleDateString() + " " + date.toLocaleTimeString();
     const author = matterResult.data.author || "匿名";
     const tags = matterResult.data.tags || ["未分类"];
 
@@ -122,10 +125,9 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
             id: id,
             content: matterResult.content,
             title: title,
-            date: date,
+            date: dateString,
             author: author,
             tags: tags,
-            data: matterResult.data,
         },
     };
 };
