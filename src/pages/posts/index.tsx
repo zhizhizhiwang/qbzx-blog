@@ -1,4 +1,3 @@
-// src/app/(common)/blog/page.tsx (博客列表页面)
 import Link from 'next/link';
 import Title from '@/item/title';
 import Sidebar from '@/item/sidebar';
@@ -15,7 +14,7 @@ interface BlogListPageProps {
 
 export default function BlogListPage({ allPostsData }: BlogListPageProps) {
     return (
-        <div>
+        <>
             <div className={styles.container}>
                 <Sidebar
                     page="主页"
@@ -24,7 +23,7 @@ export default function BlogListPage({ allPostsData }: BlogListPageProps) {
                     items={["文章列表", "关于"]}
                     hrefs={["/posts", "/about"]}
                 />
-                <div>
+                <div className={styles.content}>
                     <Title text='所有文章' />
                         <ul className={styles.postList}>
                             {allPostsData.map(({ id, href }) => (
@@ -39,7 +38,7 @@ export default function BlogListPage({ allPostsData }: BlogListPageProps) {
                         </ul>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -3,8 +3,11 @@
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
+  --common-background: #9f9f9f;
+  --common-dark-background: #1a1a1a;
+
+  --button-primary-hover: #ccc;
+  --button-secondary-hover: #1a1a1a;
 
   display: flex; /* 将 grid 改为 flex */
   flex-direction: column; /* 垂直排列 */
@@ -31,34 +34,38 @@
     --button-primary-hover: #ccc;
     --button-secondary-hover: #1a1a1a;
   }
+
   .container {
+    
+    background-color: #1a1a1a !important;
     background: transparent;
-    color: #eaeaea;
+    color: #eaeaea !important;
   }
 
   .content {
+    background-color: #1a1a1a !important;
     background: transparent;
-    color: #eaeaea;
+    color: #ffffff !important;
   }
 
   .sidebar {
-    background-color: var(--common-dark-background);
-    color: #eaeaea;
+    background-color: #1a1a1a !important;
+    color: #eaeaea !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     border: 1px solid #333;
   }
 
   .sidebar ul li a {
-    color: #eaeaea;
+    color: #eaeaea !important;
   }
 
   .sidebar ul li a:hover {
-    color: #90cdf4;
+    color: #90cdf4 !important;
   }
 
   .postList {
     background: transparent;
-    color: #eaeaea;
+    color: #eaeaea !important;  
   }
 
   .postList li {
@@ -66,31 +73,31 @@
   }
 
   .postLink {
-    color: #eaeaea;
+    color: #eaeaea !important;
     background: transparent;
   }
 
   .postLink:hover {
-    color: #90cdf4;
-    background: var(--gray-alpha-200);
+    color: #90cdf4 !important;
+    background: var(--gray-alpha-200) !important;
   }
 
   .block {
-    background: #232323;
-    color: #eaeaea;
-    border: 1px solid #444;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background: #232323 !important;
+    color: #eaeaea !important;
+    border: 1px solid #444 !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
   }
 
   .block h3,
   .block p {
-    color: #eaeaea;
+    color: #eaeaea !important;
   }
 
   .quote {
-    background: #232323;
-    color: #eaeaea;
-    border: 1px solid #444;
+    background: #232323 !important;
+    color: #eaeaea !important;
+    border: 1px solid #444 !important;
   }
 }
 
@@ -198,7 +205,7 @@ a.secondary {
 .container {
   margin: 20px;
   /* 添加一些外边距 */
-  min-height: 100%;
+  min-height: 100vh;
   /* 确保容器至少占满视口高度 */  
 
 }
@@ -407,9 +414,6 @@ a.secondary {
     justify-content: center;
   }
 }
-
-
-
 
 @media (prefers-color-scheme: dark) {
   .logo {

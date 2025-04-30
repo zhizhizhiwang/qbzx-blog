@@ -73,6 +73,7 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                 <div className={styles.content}>
                     <Title text={title} subtitle={"by: " + author} />
                     <span>更新时间: {date}</span>
+
                     <MathJaxContext config={{
                         tex: { packages: ['base', 'ams'] },
                         tex2jax: {
@@ -89,6 +90,7 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                             {content}
                         </ReactMarkdown>
                     </MathJaxContext>
+
                 </div>
             </div>
         </div>
