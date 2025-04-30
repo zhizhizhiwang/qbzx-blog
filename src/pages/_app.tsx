@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/css/globals.css";
-import styles from "@/css/page.module.css";
-import Sidebar from "@/item/sidebar";
+import type { ReactElement, ReactNode } from 'react'
+import type { NextPage } from 'next'
+import type { AppProps } from 'next/app'
 
 export const runtime = "experimental-edge";
 
@@ -15,15 +16,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+
+
+export default function RootLayout({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <html lang="zh-Hans">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+          <Component {...pageProps} />
       </body>
     </html>
   );
