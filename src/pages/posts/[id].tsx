@@ -50,7 +50,7 @@ const markdownComponents = {
     inlineCode({ children, className, ...props }) {
         if (className?.includes('language-math')) {
             return <MathJax dynamic>{String(children)}</MathJax>;
-        }
+         }
         if (typeof children[0] === 'string' && /^\$.*\$$/.test(children[0])) {
             return <MathJax dynamic>{children[0].slice(1, -1)}</MathJax>;
         }
