@@ -3,7 +3,7 @@ import "@/css/globals.css";
 import styles from "@/css/page.module.css";
 import Sidebar from "@/item/sidebar";
 
-export const runtime = "edge";
+export const runtime = "experimental-edge";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
