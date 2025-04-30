@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/css/globals.css";
 import styles from "@/css/page.module.css";
 import Sidebar from "@/item/sidebar";
+
+export const runtime = "edge";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,11 +14,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "Qbzx bbs",
-  description: "Qbzx bbs",
-};
 
 export default function RootLayout({
   children,
