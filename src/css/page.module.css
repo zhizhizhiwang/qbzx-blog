@@ -32,11 +32,13 @@
     --button-secondary-hover: #1a1a1a;
   }
   .container {
+    background-color: var(--common-dark-background);
     background: transparent;
     color: #eaeaea;
   }
 
   .content {
+    background-color: var(--common-dark-background);
     background: transparent;
     color: #eaeaea;
   }
