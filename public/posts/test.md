@@ -4,7 +4,7 @@ author: zhizhizhiwang
 date: 2025-4-30
 ---
 
-# Welcome to Leanote! 欢迎来到Leanote!
+# Welcome to Qbbs! 欢迎来到Qbbs!
  
 ## 1. 排版
  
@@ -29,7 +29,7 @@ date: 2025-4-30
 ## 2. 图片与链接
  
 图片:
-![leanote](http://leanote.com/images/logo/leanote_icon_blue.png)
+![leanote](http://blog.redstonehub.top/qbbs.svg)
 链接:
  
 [这是去Qbbs的链接](http://blog.redstonehub.top)
@@ -87,16 +87,14 @@ class Employee:
         Employee.empCount += 1
 ```
  
-# 5. Markdown 扩展
+# 5. Markdown
  
-Markdown 扩展支持:
+Markdown 支持:
  
 * 表格
 * 定义型列表
 * Html 标签
 * 脚注
-* 目录
-* 时序图与流程图
 * MathJax 公式
  
 ## 5.1 表格
@@ -161,27 +159,12 @@ Pipe     | \$1
  
 **提示**, 如果想对图片的宽度和高度进行控制, 你也可以通过img标签, 如:
  
-<img src="http://leanote.com/images/logo/leanote_icon_blue.png" width="50px" />
+<img src="http://blog.redstonehub.top/qbbs.svg" width="50px" />
  
 ## 5.4 脚注
  
-Leanote[^footnote]来创建一个脚注
+Qb bbs[^footnote]来创建一个脚注
   [^footnote]: 脚注
- 
-## 5.5 目录
- 
-通过 `[TOC]` 在文档中插入目录, 如:
- 
-[TOC]
- 
-## 5.6 时序图与流程图
- 
-不支持
- 
-> **提示:** 更多关于时序图与流程图的语法请参考:
- 
-> - [时序图语法](http://bramp.github.io/js-sequence-diagrams/)
-> - [流程图语法](http://adrai.github.io/flowchart.js)
  
 ## 5.7 MathJax 公式
  
@@ -195,13 +178,9 @@ $$
  \sum_{i=1}^n a_i=0  
 $$   
  
-
-\begin{eqnarray}
+$$
 f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2  
-\end{eqnarray}
-
-
- 
+$$
 更复杂的公式:  
 
 $$  

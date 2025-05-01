@@ -3,17 +3,20 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import Sidebar from "@/item/sidebar";
 import styles from "@/css/page.module.css";
 import 'katex/dist/katex.min.css';
-import ReactMarkdown from 'react-markdown';
-import type { Components } from 'react-markdown';
+import "highlight.js/styles/github.css";
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeHighlight from 'rehype-highlight'
+import rehypeFormat from 'rehype-format';
+import remarkMath from 'remark-math'
 import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
+import rehypeMathJaxSvg from 'rehype-mathjax/svg';
+import rehypeStringify from 'rehype-stringify';
 import rehypeRaw from 'rehype-raw';
-import { MathJaxContext, MathJax } from 'better-react-mathjax';
-import Mermaid from 'react-mermaid2';
+import wikiLinkPlugin from "@flowershow/remark-wiki-link";
 
-interface PostData {
-    [key: string]: any; // frontmatter 字段，如 title, date 等
-}
+
 
 interface TestPageProps {
     id: string;
@@ -24,39 +27,6 @@ interface TestPageProps {
     tags: string[];
 }
 
-const mathJaxConfig = {
-    tex: { packages: ['base', 'ams'] }
-};
-
-const markdownComponents = {
-    code({ className, children, ...props }) {
-        if (
-            className?.includes('language-mermaid') ||
-            className?.includes('language-flow') || 
-            className?.includes('language-sequence')
-        ) {
-            return <Mermaid chart={String(children).replace(/\n$/, '')} />;
-        }
-        if (className?.includes('language-math')) {
-            let formula = String(children).replace(/^\n+|\n+$/g, '');
-            // 只对非 \begin 环境和非 \[ ... \] 自动加 \displaystyle
-            if (!/^\\begin/.test(formula) && !/^\\\[/.test(formula)) {
-                formula = '\\displaystyle ' + formula;
-            }
-            return <MathJax dynamic>{formula}</MathJax>;
-        }
-        return <code className={className} {...props}>{children}</code>;
-    },
-    inlineCode({ children, className, ...props }) {
-        if (className?.includes('language-math')) {
-            return <MathJax dynamic>{String(children)}</MathJax>;
-         }
-        if (typeof children[0] === 'string' && /^\$.*\$$/.test(children[0])) {
-            return <MathJax dynamic>{children[0].slice(1, -1)}</MathJax>;
-        }
-        return <code className={className} {...props}>{children}</code>;
-    }
-} as Partial<Components>;
 
 export default function TestPage({ id, content, title, date, author, tags }: TestPageProps) {
 
@@ -73,24 +43,7 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                 <div className={styles.content}>
                     <Title text={title} subtitle={"by: " + author} />
                     <span>更新时间: {date}</span>
-
-                    <MathJaxContext config={{
-                        tex: { packages: ['base', 'ams'] },
-                        tex2jax: {
-                            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                            processEscapes: true
-                        },
-                    }}>
-                        <ReactMarkdown
-                            remarkPlugins={[remarkMath, remarkGfm]}
-                            rehypePlugins={[rehypeRaw]}
-                            components={markdownComponents}
-                        >
-                            {content}
-                        </ReactMarkdown>
-                    </MathJaxContext>
-
+                    <div className={`${styles.content} markdown-body`} dangerouslySetInnerHTML={{ __html: content }} />
                 </div>
             </div>
         </div>
@@ -122,10 +75,23 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
     const author = matterResult.data.author || "匿名";
     const tags = matterResult.data.tags || ["未分类"];
 
+    const html_content = await unified()
+    .use(remarkParse)   
+    .use(remarkGfm)
+    .use(remarkMath)
+    .use(remarkRehype, {allowDangerousHtml: true})
+    .use(rehypeRaw)
+    .use(rehypeHighlight)
+    .use(rehypeMathJaxSvg)
+    .use(rehypeFormat,  {blanks: ['body', 'head'], indent: '\t'})
+    .use(rehypeStringify)
+    .use(wikiLinkPlugin)
+    .process(matterResult.content);
+
     return {
         props: {
             id: id,
-            content: matterResult.content,
+            content: html_content.toString(),
             title: title,
             date: dateString,
             author: author,
