@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/css/globals.css";
+import 'github-markdown-css/github-markdown.css';
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
