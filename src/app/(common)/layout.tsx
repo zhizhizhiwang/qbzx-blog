@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Qbzx bbs",
   description: "Qbzx bbs",
+  icons: {
+    icon: '/qbbs.png',
+  },
 };
 
 export default function RootLayout({
