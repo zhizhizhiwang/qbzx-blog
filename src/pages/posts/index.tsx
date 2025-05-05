@@ -12,6 +12,8 @@ interface BlogListPageProps {
     allPostsData: PostItem[];
 }
 
+export const runtime = "edge";
+
 export default function BlogListPage({ allPostsData }: BlogListPageProps) {
     return (
         <>
