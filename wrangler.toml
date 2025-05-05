@@ -2,7 +2,7 @@ name = "qbzx-blog"
 
 compatibility_date = "2024-07-29"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".vercel/output/static"
+pages_build_output_dir = ".next/static"
 
 [env.production.vars]
 NEXTAUTH_SECRET = "023428d7d1f5225a60e341d6ff0369cf"

@@ -29,7 +29,7 @@ date: 2025-4-30
 ## 2. 图片与链接
  
 图片:
-![qbbs](http://blog.redstonehub.top/qbbs.png)
+![leanote](http://blog.redstonehub.top/qbbs.svg)
 链接:
  
 [这是去Qbbs的链接](http://blog.redstonehub.top)
@@ -159,7 +159,7 @@ Pipe     | \$1
  
 **提示**, 如果想对图片的宽度和高度进行控制, 你也可以通过img标签, 如:
  
-<img src="http://blog.redstonehub.top/qbbs.png" width="50px" />
+<img src="http://blog.redstonehub.top/qbbs.svg" width="50px" />
  
 ## 5.4 脚注
  
