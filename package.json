@@ -22,6 +22,7 @@
     "@simplewebauthn/browser": "^9.0.1",
     "@simplewebauthn/server": "^9.0.3",
     "@types/highlight.js": "^9.12.4",
+    "animejs": "^4.0.2",
     "better-react-mathjax": "^2.3.0",
     "github-markdown-css": "^5.8.1",
     "gray-matter": "^4.0.3",

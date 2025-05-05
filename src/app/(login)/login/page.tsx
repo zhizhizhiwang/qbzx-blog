@@ -9,6 +9,9 @@ import {
 } from '@clerk/nextjs'
 import Footer from '@/item/footer';
 import styles from "@/css/page.module.css";
+import { run } from 'node:test';
+
+export const runtime = 'edge'
 
 
 
@@ -17,22 +20,20 @@ export default function Login() {
         <>
             <header className={`${styles.page} `}>
                 <main className={styles.main}>
-                    <div>
+                    <div className={styles.content}>
+                        <SignedOut>
+                            
+                            <SignInButton> 登录 </SignInButton>
+                            <SignUpButton> 注册 </SignUpButton>
+                        </SignedOut>
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
                         
                     </div>
                 </main>
                 <Footer />
-                <SignedOut>
-                    <SignInButton> 登录 </SignInButton>
-                    <SignUpButton> 注册 </SignUpButton>
-                </SignedOut>
-                <SignedIn>
-                    <UserButton />
-                </SignedIn>
             </header>
-            <p>
-                login page
-            </p>
         </>
     )
 }
