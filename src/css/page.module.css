@@ -309,6 +309,10 @@ a.secondary {
   min-width: 100%;
 }
 
+.postList li a {
+  min-width: 100%;
+}
+
 .postList li:last-child {
   border-bottom: none;
   
@@ -344,7 +348,7 @@ a.secondary {
   text-decoration: none !important;
   border-bottom: 1px solid #000;
   line-height: 1.5rem;
-  min-width: 80vh;
+  min-width: 100%;
 }
 
 .block h3 {

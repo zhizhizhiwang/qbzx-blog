@@ -16,9 +16,8 @@ export default function Login() {
             <div className={styles.loginBox}>
                 <h1 className={styles.title}>欢迎回来</h1>
                 <SignedOut>
-                <div className={styles.subtitle}>登录以继续访问</div>
-                <div className={styles.buttonContainer}>
-                    
+                    <div className={styles.subtitle}>登录以继续访问</div>
+                    <div className={styles.buttonContainer}>
                         <SignInButton mode="modal">
                             <button className={`${styles.button} ${styles.loginButton}`}>
                                 登录
@@ -29,7 +28,7 @@ export default function Login() {
                                 注册
                             </button>
                         </SignUpButton>
-                </div>
+                    </div>
                 </SignedOut>
                 <SignedIn>
                     <div>
@@ -37,7 +36,6 @@ export default function Login() {
                     </div>
                 </SignedIn>
             </div>
-            
         </div>
     )
 }
