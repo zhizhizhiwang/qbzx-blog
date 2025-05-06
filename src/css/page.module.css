@@ -342,9 +342,9 @@ a.secondary {
   display: flex;
   flex-direction: column;
   text-decoration: none !important;
-  border: 1px solid #000;
+  border-bottom: 1px solid #000;
   line-height: 1.5rem;
-  min-width: 100%;
+  min-width: 80vh;
 }
 
 .block h3 {

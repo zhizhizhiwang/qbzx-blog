@@ -16,8 +16,6 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeRaw from 'rehype-raw';
 import wikiLinkPlugin from "@flowershow/remark-wiki-link";
 
-
-
 interface TestPageProps {
     id: string;
     content: string;
@@ -29,7 +27,6 @@ interface TestPageProps {
 
 
 export default function TestPage({ id, content, title, date, author, tags }: TestPageProps) {
-
     return (
         <div>
             <div className={styles.container}>
@@ -83,7 +80,7 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
     .use(rehypeRaw)
     .use(rehypeHighlight)
     .use(rehypeMathJaxSvg)
-    .use(rehypeFormat,  {blanks: ['body', 'head'], indent: '\t'})
+    .use(rehypeFormat, {blanks: ['body', 'head'], indent: '\t'})
     .use(rehypeStringify)
     .use(wikiLinkPlugin)
     .process(matterResult.content);

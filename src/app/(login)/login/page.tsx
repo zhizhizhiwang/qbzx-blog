@@ -6,7 +6,6 @@ import {
     SignedOut,
     UserButton,
 } from '@clerk/nextjs'
-import Footer from '@/item/footer';
 import styles from "@/css/login.module.css";
 
 export const runtime = 'edge'
