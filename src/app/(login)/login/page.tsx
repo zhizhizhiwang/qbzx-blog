@@ -27,6 +27,7 @@ export default function Login() {
                     <h1 className={styles.title}>欢迎回来</h1>
                     <SignedOut>
                         <div className={styles.subtitle}>登录以继续访问</div>
+                        <div className={styles.note}>请使用与注册时相同的浏览器进行验证<br/>请勿使用内置浏览器/无痕模式!</div>
                         <div className={styles.buttonContainer}>
                             <SignInButton mode="modal">
                                 <button className={`${styles.button} ${styles.loginButton}`}>

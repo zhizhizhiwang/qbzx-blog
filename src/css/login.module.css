@@ -32,8 +32,15 @@
 }
 
 .subtitle {
-    margin: 1rem 0 2rem;
+    margin: 1rem 0 0;
     color: #666;
+}
+
+.note {
+    font-size: 0.9rem;
+    color: #ff6363;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .buttonContainer {
@@ -82,6 +89,10 @@
     }
 
     .subtitle {
+        color: #aaa;
+    }
+
+    .note {
         color: #aaa;
     }
 
