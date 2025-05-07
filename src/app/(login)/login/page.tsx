@@ -7,8 +7,11 @@ import {
     SignedOut,
     UserButton,
 } from '@clerk/nextjs'
+import Link from 'next/link';
+
 import styles from "@/css/login.module.css";
 import pagestyles from "@/css/page.module.css"
+
 
 export const runtime = 'edge'
 
@@ -27,6 +30,7 @@ export default function Login() {
                     <h1 className={styles.title}>欢迎回来</h1>
                     <SignedOut>
                         <div className={styles.subtitle}>登录以继续访问</div>
+                        <br/>
                         <div className={styles.buttonContainer}>
                             <SignInButton mode="modal">
                                 <button className={`${styles.button} ${styles.loginButton}`}>
@@ -39,6 +43,11 @@ export default function Login() {
                                 </button>
                             </SignUpButton>
                         </div>
+                        <Link href="\posts\email-help">
+                            <div className={styles.note}>
+                                邮箱帮助
+                            </div>
+                        </Link>
                     </SignedOut>
                     <SignedIn>
                         <div>
