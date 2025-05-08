@@ -250,11 +250,19 @@ a.secondary {
   gap: 2rem;
 }
 
-/* 右侧内容容器 */
 .sidebar_right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: flex-end; /* 从右向左排列 */
+  gap: 0; /* 移除间距 */
+  margin-left: auto; /* 推到最右侧 */
+}
+
+/* 如果需要调整子元素间距，可以单独设置 */
+.sidebar_left > *,
+.sidebar_right > * {
+  margin: 0; /* 移除所有子元素的外边距 */
+  padding: 0; /* 移除所有子元素的内边距 */
 }
 
 .sidebar h2 {

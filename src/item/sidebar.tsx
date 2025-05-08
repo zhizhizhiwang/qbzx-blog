@@ -70,19 +70,23 @@ export default function Sidebar({ page, title, author, items = [], hrefs = [] }:
     // 桌面端渲染
     return (
         <div className={styles.sidebar}>
-            <h2 className={`${itemstyle.title} ${itemstyle.fs2}`}>{title}</h2>
-            <div className={itemstyle.menu_item}>
-                <span>菜单</span>
-                <div className={itemstyle.arrow}></div>
-                <ul className={itemstyle.submenu}>
-                    {actually_items.map((item, index) => (
-                        <li key={index}>
-                            <Link href={actually_href[index]} className={itemstyle.menu_link}>
-                                {item}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+            <div className={styles.sidebar_left}>
+                <h2 className={`${itemstyle.title} ${itemstyle.fs2}`}>{title}</h2>
+            </div>
+            <div className={styles.sidebar_right}>
+                <div className={itemstyle.menu_item}>
+                    <span>菜单</span>
+                    <div className={itemstyle.arrow}></div>
+                    <ul className={itemstyle.submenu}>
+                        {actually_items.map((item, index) => (
+                            <li key={index}>
+                                <Link href={actually_href[index]} className={itemstyle.menu_link}>
+                                    {item}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
             <span className={itemstyle.author}>作者: {author.join(", ")}</span>
         </div>
