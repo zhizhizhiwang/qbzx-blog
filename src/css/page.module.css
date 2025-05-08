@@ -219,25 +219,16 @@ a.secondary {
 }
 
 .sidebar {
-  /* 改成顶栏 */
-  display: grid; 
-  grid-template-columns: 7fr 1fr 1fr 1fr 1fr; 
-  grid-template-rows: 0.2fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
-    ". . . . ."; 
+  /* 改用 flex 布局 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   min-height: 3rem;
-  /* 侧边栏宽度 */
   background-color: var(--common-background);
-  /* 侧边栏背景色为白色 */
-  list-style: none;
-  padding: 10px;
-  padding-left: 1rem;
+  padding: 10px 2rem;
   border-radius: 8px;
-  /* 圆角边框 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  /* 阴影效果 */
   z-index: 1;
   /* 确保在其他元素之上 */
   line-height: 1.7rem;
@@ -251,6 +242,19 @@ a.secondary {
   left: 0;
   margin: 0 auto;
   /* 水平居中 */
+}
+
+.sidebar_left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* 右侧内容容器 */
+.sidebar_right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .sidebar h2 {
@@ -380,7 +384,7 @@ a.secondary {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .page {
     padding: 32px;
     padding-bottom: 80px;
@@ -417,6 +421,14 @@ a.secondary {
     align-items: center;
     justify-content: center;
   }
+
+
+  .sidebar_left,
+  .sidebar_right {
+    width: 100%;
+    justify-content: center;
+  }
+
 }
 
 @media (prefers-color-scheme: dark) {

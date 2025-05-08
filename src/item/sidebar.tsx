@@ -40,23 +40,27 @@ export default function Sidebar({ page, title, author, items = [], hrefs = [] }:
         return (
             <>
                 <div className={`${styles.sidebar}`}>
-                    <h4 className={`${itemstyle.title} ${itemstyle.fs1}`}>{title}</h4>
-                    <div className={itemstyle.menu_item}>
-                        <span>菜单</span>
-                        <div className={itemstyle.arrow}></div>
-                        <ul className={itemstyle.submenu}>
-                            <li className={itemstyle.menu_link}>
-                                <span className={itemstyle.author}>作者: {author.join(", ")}</span>
-                            </li>
-                            {actually_items.map((item, index) => (
-                                <li key={index}>
-                                    <Link href={actually_href[index]} className={itemstyle.menu_link}>
-                                        {item}
-                                    </Link>
+                    <div className={styles.sidebar_left}>
+                        <h4 className={`${itemstyle.title} ${itemstyle.fs1}`}>{title}</h4>
+                    </div>
+                    <div className={styles.sidebar_right}>
+                        <div className={itemstyle.menu_item}>
+                            <span>菜单</span>
+                            <div className={itemstyle.arrow}></div>
+                            <ul className={itemstyle.submenu}>
+                                <li className={itemstyle.menu_link}>
+                                    <span className={itemstyle.author}>作者: {author.join(", ")}</span>
                                 </li>
-                            ))}
+                                {actually_items.map((item, index) => (
+                                    <li key={index}>
+                                        <Link href={actually_href[index]} className={itemstyle.menu_link}>
+                                            {item}
+                                        </Link>
+                                    </li>
+                                ))}
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </>
