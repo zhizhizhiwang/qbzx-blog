@@ -224,7 +224,7 @@ a.secondary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   min-height: 3rem;
   background-color: var(--common-background);
   padding: 10px 2rem;
