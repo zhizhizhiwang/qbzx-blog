@@ -16,8 +16,6 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeRaw from 'rehype-raw';
 import wikiLinkPlugin from "@flowershow/remark-wiki-link";
 
-
-
 interface TestPageProps {
     id: string;
     content: string;
@@ -29,7 +27,6 @@ interface TestPageProps {
 
 
 export default function TestPage({ id, content, title, date, author, tags }: TestPageProps) {
-
     return (
         <div>
             <div className={styles.container}>
@@ -42,7 +39,7 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                 />
                 <div className={styles.content}>
                     <Title text={title} subtitle={"by: " + author} />
-                    <span>更新时间: {date}</span>
+                    <span>更新时间: {date} 标签: {tags}</span>
                     <div className={`${styles.content} markdown-body`} dangerouslySetInnerHTML={{ __html: content }} />
                 </div>
             </div>
@@ -64,7 +61,7 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
         throw new Error(`File not found: ${fullPath}`);
     }
 
-    let fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
     const matterResult = matter(fileContents);
 
     const stat = fs.statSync(fullPath);
@@ -73,7 +70,9 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
     const date = new Date(dateObj);
     const dateString = date.toLocaleDateString() + " " + date.toLocaleTimeString();
     const author = matterResult.data.author || "匿名";
-    const tags = matterResult.data.tags || ["未分类"];
+    const tags: string[] = matterResult.data.tags || ["未分类"];;
+
+    const result_tags = tags.filter(tag => !tag.startsWith('--'));
 
     const html_content = await unified()
     .use(remarkParse)   
@@ -83,7 +82,7 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
     .use(rehypeRaw)
     .use(rehypeHighlight)
     .use(rehypeMathJaxSvg)
-    .use(rehypeFormat,  {blanks: ['body', 'head'], indent: '\t'})
+    .use(rehypeFormat, {blanks: ['body', 'head'], indent: '\t'})
     .use(rehypeStringify)
     .use(wikiLinkPlugin)
     .process(matterResult.content);
@@ -95,7 +94,7 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
             title: title,
             date: dateString,
             author: author,
-            tags: tags,
+            tags: result_tags,
         },
     };
 };
@@ -103,15 +102,18 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
 export const getStaticPaths: GetStaticPaths = async () => {
     const fs = await require('fs');
     const path = await require('path');
+    const matter = await require('gray-matter');
     const postsDirectory = path.join('public', 'posts');
     const filenames = fs.readdirSync(postsDirectory);
 
     const paths = filenames.map((filename: string) => {
+
         return {
             params: {
                 id: filename.replace(/\.md$/, ''),
             },
         };
+        
     });
 
     return {

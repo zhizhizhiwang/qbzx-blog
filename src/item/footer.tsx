@@ -36,7 +36,12 @@ export default function Footer() {
                         <center>
                             此网站完全由学生运营
                             <br />
-                            本作品采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0国际许可协议</a>进行许可。
+                            本作品采用
+                            <br/>
+                            <img src="/by-nc-sa.svg" alt="BY-NC-SA"/> 
+                            <br/>
+                            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                            CC BY NC SA 4.0国际</a>进行许可。
                         </center>
                     </li>
                     <li>

@@ -194,6 +194,7 @@ a.secondary {
   margin: 10px 0;
   display: flex;
   justify-content: center;
+  gap: 2rem;
 }
 
 .githubIcon {
@@ -219,25 +220,16 @@ a.secondary {
 }
 
 .sidebar {
-  /* 改成顶栏 */
-  display: grid; 
-  grid-template-columns: 7fr 1fr 1fr 1fr 1fr; 
-  grid-template-rows: 0.2fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
-    ". . . . ."; 
-  width: 100%;
+  /* 改用 flex 布局 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
   min-height: 3rem;
-  /* 侧边栏宽度 */
   background-color: var(--common-background);
-  /* 侧边栏背景色为白色 */
-  list-style: none;
-  padding: 10px;
-  padding-left: 1rem;
+  padding: 10px 2rem;
   border-radius: 8px;
-  /* 圆角边框 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  /* 阴影效果 */
   z-index: 1;
   /* 确保在其他元素之上 */
   line-height: 1.7rem;
@@ -251,6 +243,27 @@ a.secondary {
   left: 0;
   margin: 0 auto;
   /* 水平居中 */
+}
+
+.sidebar_left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sidebar_right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* 从右向左排列 */
+  gap: 0; /* 移除间距 */
+  margin-left: auto; /* 推到最右侧 */
+}
+
+/* 如果需要调整子元素间距，可以单独设置 */
+.sidebar_left > *,
+.sidebar_right > * {
+  margin: 0; /* 移除所有子元素的外边距 */
+  padding: 0; /* 移除所有子元素的内边距 */
 }
 
 .sidebar h2 {
@@ -309,6 +322,10 @@ a.secondary {
   min-width: 100%;
 }
 
+.postList li a {
+  min-width: 100%;
+}
+
 .postList li:last-child {
   border-bottom: none;
   
@@ -342,7 +359,7 @@ a.secondary {
   display: flex;
   flex-direction: column;
   text-decoration: none !important;
-  border: 1px solid #000;
+  border-bottom: 1px solid #000;
   line-height: 1.5rem;
   min-width: 100%;
 }
@@ -376,7 +393,7 @@ a.secondary {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .page {
     padding: 32px;
     padding-bottom: 80px;
@@ -413,6 +430,14 @@ a.secondary {
     align-items: center;
     justify-content: center;
   }
+
+
+  .sidebar_left,
+  .sidebar_right {
+    width: 100%;
+    justify-content: center;
+  }
+
 }
 
 @media (prefers-color-scheme: dark) {

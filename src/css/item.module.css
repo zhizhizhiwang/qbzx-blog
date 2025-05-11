@@ -5,16 +5,19 @@
     }
 }
 
+.fs2 {
+    font-size: 2rem;
+}
 
+.fs1 {
+    font-size: 1rem;
+}
 
 .title {
     text-align: left;
     /* 使用 Flexbox 布局 */
-    margin-top: 30px;
-
     max-width: 80%;
     /* 字体大一些 */
-    font-size: 2rem;
     /* 阴影效果 */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     /* 斜体 */
@@ -23,6 +26,7 @@
     color: #333;
     /* 添加一个过渡效果，使 hover 效果更平滑 */
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .title:hover {
@@ -46,11 +50,13 @@
     border-left-style: solid;
     border-width:medium;
     max-height: 1.5rem;
+    gap: 8px;  /* 文字和箭头之间的间距 */
+    padding: 0 12px; 
 }
 
 .menu_link {    
     display: block;
-    color: #fff;
+    background-color: #fff;
     padding: 14px 20px;
     text-decoration: none;
     cursor: pointer;
@@ -78,7 +84,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    z-index: 100;
+    z-index: -1;
     overflow: hidden;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
     transition: max-height 0.5s ;
@@ -90,7 +96,7 @@
 }
 
 .menu_item:active>.submenu {
-    height: 1000px;
+    max-height: 1000px;
 }
 
 .submenu li a {
@@ -105,22 +111,22 @@
 }
 
 .arrow {
+    display: inline-flex;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-bottom: 15px solid black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
+    position: relative;  /* 改为相对定位 */
+    transform: rotate(0deg);
     transition: transform 0.5s;
+    margin-left: 4px;  /* 和文字之间添加间距 */
 }
 
 .menu_item:active .arrow {
-    transform: translate(-50%, -50%) rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .menu_item:hover .arrow {
-    transform: translate(-50%, -50%) rotate(180deg);
+    transform: rotate(180deg);
 }

@@ -56,6 +56,10 @@ export async function getStaticProps() {
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const matterResult = matter(fileContents);
         const id =  matterResult.data.title || fileName.replace(/\.md$/, '');
+        const tags: string[] = matterResult.data.tags || ["未分类"];
+        if (tags.includes('--no-show')) {
+            return null;
+        }
         return {
             id,
             href: `/posts/${fileName.replace(/\.md$/, '')}`,
@@ -64,7 +68,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            allPostsData: allPostsData,
+            allPostsData: allPostsData.filter((post: PostItem) => post !== null) as PostItem[],
         },
     };
 }
