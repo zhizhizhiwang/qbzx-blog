@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
 
-      <Title text="QBBS" subtitle="qbzx bbs by zhizhiwang" />
+      <Title text="QBBS" subtitle="qbzx bbs + qbzx blog" />
       <div className={styles.page}> 
         <main className={styles.main}>
           <div className={styles.ctas}>
