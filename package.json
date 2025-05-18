@@ -46,6 +46,7 @@
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
+    "eslint": "^9.27.0",
     "typescript": "^5",
     "vercel": "39.1.1"
   },
