@@ -1,16 +1,20 @@
-import Image from "next/image";
+import { auth, currentUser } from '@clerk/nextjs/server'
+import Editor from "./editor";
 import styles from "@/css/page.module.css";
-import Footer from "@/item/footer";
 import Title from "@/item/title";
-import Link from "next/link";
+import { db } from "@/app/binding"
 
-export default function Home() {
+export default async function DashboardPage({ params }: { params: { key?: string } }) {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return <div>请先登录</div>;
+  }
+
   return (
-    <>
-
-      <Title text="QBBS" subtitle="文章页" />
-      我知道你很急, 但是你先别急
-      
-    </>
+    <div className={styles.container}>
+      <Title text="文章编辑" subtitle="支持 Markdown 和 LaTeX" />
+      <Editor initialKey={params.key} db={db}/>
+    </div>
   );
 }

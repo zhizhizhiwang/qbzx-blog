@@ -6,6 +6,7 @@ interface FileData {
     title: string;
     date: string;
     content: string;
+    owner: string;
 }
 
 /*
@@ -17,13 +18,15 @@ interface FileData {
     * @property {string} title - 文件标题
     * @property {string} date - 文件日期
     * @property {string} content - 文件内容
+    * @property {string} owner - 文件所有者
     * 
     * DB 表结构:
     * CREATE TABLE IF NOT EXISTS files (
     * key TEXT PRIMARY KEY,      -- 文件唯一标识符
     * title TEXT NOT NULL,       -- 文件标题
     * date TEXT NOT NULL,        -- 创建/修改日期
-    * content TEXT NOT NULL      -- 文件内容
+    * content TEXT NOT NULL,     -- 文件内容
+    * owner TEXT NOT NULL,       -- 文件所有者
 );
 */
 
@@ -52,44 +55,25 @@ class RemoteFile {
             this.date = result.date;
             this.content = result.content;
         } else {
-            // 如果没有找到，初始化一个空文件
-            const stat = await this.db.prepare('INSERT INTO files (key, title, date, content) VALUES (?, ?, ?, ?)')
-                .bind(this.key, '', this.date, '')
-                .run();
-            if (stat.meta.changes === 0) {
-                throw new Error('Failed to create a new file');
-            }
-
-            this.title = '';
-            this.date = new Date().toLocaleDateString();
-            this.content = '';
+            throw new Error('Failed to create a new file');
+            
         }
     }
 
-    // 保存到数据库
+    // 保存到数据库(更新内容)
     async save(): Promise<void> {
 
         this.saveToLocalStorage();
 
-        const stmt = this.db.prepare(`
-            INSERT INTO files (key, title, date, content)
-            VALUES (?, ?, ?, ?)
-            ON CONFLICT(key) DO UPDATE SET
-                title = excluded.title,
-                date = excluded.date,
-                content = excluded.content
-        `);
+        const stmt = this.db.prepare(
+            'UPDATE files SET title = ?, date = ?, content = ? WHERE key = ?'
+        );
 
-        const result = await stmt.bind(
-            this.key,
-            this.title,
-            this.date,
-            this.content
-        ).run();
-        
+        const result = await stmt.bind(this.title, this.date, this.content, this.key).run();
         if (result.meta.changes === 0) {
-            throw new Error('Failed to save the file');
-        }
+            throw new Error('Failed to update the file');
+        };
+
     }
 
     //保存到浏览器localStorage
