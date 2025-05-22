@@ -1,5 +1,6 @@
 //src/lib/file.tsx
 import { D1Database } from '@cloudflare/workers-types';
+import { db } from "@/app/binding"
 
 interface FileData {
     key: string;
@@ -37,7 +38,7 @@ class RemoteFile {
     public date: string;
     public content: string;
 
-    constructor(db: D1Database, key: string) {
+    constructor(key: string) {
         this.db = db;
         this.key = key;
         this.date = new Date().toLocaleDateString();

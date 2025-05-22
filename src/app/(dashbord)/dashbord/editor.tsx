@@ -14,20 +14,18 @@ import rehypeRaw from 'rehype-raw';
 import { useUser } from "@clerk/nextjs";
 import RemoteFile from '@/lib/file';
 import styles from '@/css/editor.module.css';
-import { D1Database } from '@cloudflare/workers-types';
 
 interface EditorProps {
     initialKey?: string;
-    db: D1Database;
 }
 
-export default function Editor({ initialKey, db }: EditorProps) {
+export default function Editor({ initialKey }: EditorProps) {
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
     const [preview, setPreview] = useState('');
     const [key, setKey] = useState(initialKey || new Date().getTime().toString());
     const { user } = useUser();
-    const file = new RemoteFile(db, key);
+    const file = new RemoteFile(key);
 
     // 实时预览
     useEffect(() => {
