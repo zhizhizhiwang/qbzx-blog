@@ -18,9 +18,10 @@ import 'katex/dist/katex.min.css';
 import "highlight.js/styles/github.css";
 import 'github-markdown-css/github-markdown.css';
 
+export const runtime = 'edge';
 
 interface EditorProps {
-    initialKey?: string;
+    initialKey: string;
 }
 
 export default function Editor({ initialKey }: EditorProps) {

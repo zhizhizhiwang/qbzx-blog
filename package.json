@@ -47,7 +47,10 @@
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^9.27.0",
+    "eslint-config-next": "^15.1.8",
     "typescript": "^5",
     "vercel": "39.1.1"
   },
