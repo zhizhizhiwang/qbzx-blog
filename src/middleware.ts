@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 
 export const runtime = "experimental-edge";
 
-const isPrivateRoute = createRouteMatcher([''])
+const isPrivateRoute = createRouteMatcher(['/dashbord'])
 
 export default clerkMiddleware(async (auth, req) => {
   const url = new URL(req.url)

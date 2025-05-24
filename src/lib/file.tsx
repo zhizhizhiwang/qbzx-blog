@@ -66,15 +66,20 @@ class RemoteFile {
 
         this.saveToLocalStorage();
 
-        const stmt = this.db.prepare(
-            'UPDATE files SET title = ?, date = ?, content = ? WHERE key = ?'
-        );
 
-        const result = await stmt.bind(this.title, this.date, this.content, this.key).run();
-        if (result.meta.changes === 0) {
-            throw new Error('Failed to update the file');
-        };
+        if(this.db){
+            const stmt = this.db.prepare(
+                'UPDATE files SET title = ?, date = ?, content = ? WHERE key = ?'
+            );
 
+            const result = await stmt.bind(this.title, this.date, this.content, this.key).run();
+            if (result.meta.changes === 0) {
+                throw new Error('Failed to update the file');
+            };
+        } else {
+            alert('本地保存成功, 数据库未连接');
+            throw new Error('Database not connected');
+        }
     }
 
     //保存到浏览器localStorage

@@ -14,6 +14,10 @@ import rehypeRaw from 'rehype-raw';
 import { useUser } from "@clerk/nextjs";
 import RemoteFile from '@/lib/file';
 import styles from '@/css/editor.module.css';
+import 'katex/dist/katex.min.css';
+import "highlight.js/styles/github.css";
+import 'github-markdown-css/github-markdown.css';
+
 
 interface EditorProps {
     initialKey?: string;
