@@ -8,6 +8,12 @@ pages_build_output_dir = ".vercel/output/static"
 NEXTAUTH_SECRET = "023428d7d1f5225a60e341d6ff0369cf"
 NODE_VERSION = "22" 
 
+[env.production]
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "qbzx_blog"
+database_id = "7ca090fd-40d6-4ea0-aad9-9b1e4e029edd"
+
 [[d1_databases]]
 binding = "DB"
 database_name = "qbzx_blog"
