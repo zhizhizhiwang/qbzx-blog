@@ -2,6 +2,7 @@
 title: markdown单元测试
 author: zhizhizhiwang
 date: 2025-4-30
+tags: ["单元测试"]
 ---
 
 # Welcome to Qbbs! 欢迎来到Qbbs!
@@ -29,7 +30,7 @@ date: 2025-4-30
 ## 2. 图片与链接
  
 图片:
-![leanote](http://blog.redstonehub.top/qbbs.svg)
+![qbbs](http://blog.redstonehub.top/qbbs.png)
 链接:
  
 [这是去Qbbs的链接](http://blog.redstonehub.top)
@@ -159,7 +160,7 @@ Pipe     | \$1
  
 **提示**, 如果想对图片的宽度和高度进行控制, 你也可以通过img标签, 如:
  
-<img src="http://blog.redstonehub.top/qbbs.svg" width="50px" />
+<img src="http://blog.redstonehub.top/qbbs.png" width="50px" />
  
 ## 5.4 脚注
  

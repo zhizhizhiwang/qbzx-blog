@@ -15,6 +15,7 @@ import rehypeMathJaxSvg from 'rehype-mathjax/svg';
 import rehypeStringify from 'rehype-stringify';
 import rehypeRaw from 'rehype-raw';
 import wikiLinkPlugin from "@flowershow/remark-wiki-link";
+import type { Metadata } from 'next'
 
 interface TestPageProps {
     id: string;
@@ -25,8 +26,33 @@ interface TestPageProps {
     tags: string[];
 }
 
+export let metadata: Metadata
+
 
 export default function TestPage({ id, content, title, date, author, tags }: TestPageProps) {
+    // 生成 metadata
+    metadata = {
+        title: title,
+        description: "文章面板",
+        icons: {
+            icon: '/qbbs.png',
+        },
+        openGraph: {
+            title: title,
+            description: "文章面板",
+            url: `/posts/${id}`,
+            siteName: 'Qbzx bbs',
+            images: [
+                {
+                    url: '/qbbs.png',
+                    width: 800,
+                    height: 600,
+                },
+            ],
+            locale: 'zh-Hans',
+            type: 'article',
+        },
+    };
     return (
         <div>
             <div className={styles.container}>
@@ -39,7 +65,7 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                 />
                 <div className={styles.content}>
                     <Title text={title} subtitle={"by: " + author} />
-                    <span>更新时间: {date} 标签: {tags}</span>
+                    <span>更新时间: {date} 标签: {tags.join(" ")}</span>
                     <div className={`${styles.content} markdown-body`} dangerouslySetInnerHTML={{ __html: content }} />
                 </div>
             </div>
