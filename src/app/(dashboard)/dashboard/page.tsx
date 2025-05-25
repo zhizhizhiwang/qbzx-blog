@@ -2,6 +2,9 @@ import { auth, currentUser } from '@clerk/nextjs/server'
 import Editor from "./editor";
 import styles from "@/css/page.module.css";
 import Title from "@/item/title";
+import Link from 'next/link';
+import { find_by_owner } from "./finder"
+import { FileData } from '@/lib/file';
 
 export const runtime = 'edge';
 export const metadata = {
@@ -40,13 +43,31 @@ export default async function DashboardPage({
   const fileKey = (await params).key || (await searchParams).key as string;
 
   if (!fileKey) {
+    const filelist = await find_by_owner(userId);
+    if(filelist.length === 0) filelist.push({
+      title: "新建文章",
+      key: "new",
+    } as FileData);
     return (
       <div className={styles.container}>
-        <Title text="错误" subtitle="未指定文章" />
+        <Title text="文章列表" subtitle={"userid: " + userId} />
         <div className={styles.content}>
           <p>请指定要编辑的文章。</p>
-        </div>
+          <ul className={styles.postList}>
+            {
+              filelist.map((file) => (
+                <li key={file.key} className={styles.fileItem}>
+                  <Link href={`/dashbord?key=${file.key}`} className={styles.postLink}>
+                    <div className={styles.block}>
+                      {file.title}
+                    </div>
+                  </Link>
+                </li>
+              ))
+            }
+          </ul>
       </div>
+      </div >
     );
   }
 

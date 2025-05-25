@@ -4,10 +4,10 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 First, run the development server:
 
-!!!
+
 构建须知:
 1. 在Linux环境下运行`npm install`, 因为cf的包仅有Linux版本
-2. 如果你需要在windows环境开发, 请在Linux环境下载完毕后将`{}.json.win`删去`.win`, 再次运行`npm install`
+- 如果使用wsl, 在windows下手动去掉linux需求包再运行`npm install` 即可
 
 ```bash
 npm run dev

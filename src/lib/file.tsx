@@ -2,7 +2,7 @@
 import { D1Database } from '@cloudflare/workers-types';
 import { db } from "@/app/binding"
 
-interface FileData {
+export interface FileData {
     key: string;
     title: string;
     date: string;
