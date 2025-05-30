@@ -234,7 +234,7 @@ a.secondary {
   /* 确保在其他元素之上 */
   line-height: 1.7rem;
   /* 侧边栏高度为视口高度 */
-  right: 20px;
+  right: 2rem;
   white-space: nowrap;
   position: sticky;
   position: -webkit-sticky;
@@ -257,6 +257,7 @@ a.secondary {
   justify-content: flex-end; /* 从右向左排列 */
   gap: 0; /* 移除间距 */
   margin-left: auto; /* 推到最右侧 */
+  margin-right: 2rem;
 }
 
 /* 如果需要调整子元素间距，可以单独设置 */

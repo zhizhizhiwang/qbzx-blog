@@ -87,8 +87,8 @@ export default function Sidebar({ page, title, author, items = [], hrefs = [] }:
                         ))}
                     </ul>
                 </div>
+                <span className={itemstyle.author}>作者: {author.join(", ")}</span>
             </div>
-            <span className={itemstyle.author}>作者: {author.join(", ")}</span>
         </div>
     );
 }
