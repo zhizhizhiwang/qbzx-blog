@@ -29,8 +29,40 @@
     transition: background 0.2s;
 }
 
+.button {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    padding: 8px 16px;
+    margin-top: 1rem;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+}
+
+.saveButton {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    transform-origin: center;
+    will-change: transform, background-color;
+}
+
 .saveButton:hover {
-    background: #333;
+    background-color: #45a049;
+}
+
+.saveButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 .splitView {
@@ -72,6 +104,11 @@
 
     .saveButton {
         background: #666;
+    }
+    .button {
+        background: #444;
+        color: white;
+        border-color: #666;
     }
 
     .saveButton:hover {

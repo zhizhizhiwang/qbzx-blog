@@ -1,10 +1,13 @@
 import { auth, currentUser } from '@clerk/nextjs/server'
 import Editor from "./editor";
 import styles from "@/css/page.module.css";
+import edit_styles from "@/css/editor.module.css";
 import Title from "@/item/title";
 import Link from 'next/link';
-import { find_by_owner } from "./finder"
+import { find_by_owner} from "./finder"
+import CreateFileButton from './CreateFileButton';
 import { FileData } from '@/lib/file';
+import { NextResponse } from 'next/server'
 
 export const runtime = 'edge';
 export const metadata = {
@@ -22,13 +25,15 @@ type PageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
+
 export default async function DashboardPage({
   params,
   searchParams,
 }: PageProps) {
   const { userId } = await auth();
+  const user = await currentUser();
 
-  if (!userId) {
+  if (!userId || !user) {
     return (
       <div className={styles.container}>
         <Title text="请登录" subtitle="请登录以访问文章编辑功能" />
@@ -44,20 +49,18 @@ export default async function DashboardPage({
 
   if (!fileKey) {
     const filelist = await find_by_owner(userId);
-    if(filelist.length === 0) filelist.push({
-      title: "新建文章",
-      key: "new",
-    } as FileData);
+  
+  
     return (
       <div className={styles.container}>
-        <Title text="文章列表" subtitle={"userid: " + userId} />
+        <Title text="文章列表" subtitle={"欢迎, " + user.username} />
         <div className={styles.content}>
           <p>请指定要编辑的文章。</p>
           <ul className={styles.postList}>
             {
               filelist.map((file) => (
                 <li key={file.key} className={styles.fileItem}>
-                  <Link href={`/dashbord?key=${file.key}`} className={styles.postLink}>
+                  <Link href={`/dashboard?key=${file.key}`} className={styles.postLink}>
                     <div className={styles.block}>
                       {file.title}
                     </div>
@@ -65,6 +68,9 @@ export default async function DashboardPage({
                 </li>
               ))
             }
+            <li>
+              <CreateFileButton userId={userId} className={edit_styles.button} />
+            </li>
           </ul>
       </div>
       </div >
