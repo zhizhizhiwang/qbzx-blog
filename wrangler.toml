@@ -4,10 +4,19 @@ compatibility_date = "2024-11-11"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
 
+# 环境变量配置
 [env.production.vars]
 NEXTAUTH_SECRET = "023428d7d1f5225a60e341d6ff0369cf"
 NODE_VERSION = "22" 
 
+# 生产环境配置
+[env.production]
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "qbzx_blog"
+database_id = "7ca090fd-40d6-4ea0-aad9-9b1e4e029edd"
+
+# 开发环境数据库配置
 [[d1_databases]]
 binding = "DB"
 database_name = "qbzx_blog"
