@@ -6,9 +6,14 @@
 }
 
 .toolbar {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 7fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px 10px;
+    margin-bottom: 10px;
+    grid-template-areas:
+        ". . ."
+        ". . .";
 }
 
 .titleInput {
@@ -105,6 +110,7 @@
     .saveButton {
         background: #666;
     }
+
     .button {
         background: #444;
         color: white;
@@ -115,7 +121,8 @@
         background: #888;
     }
 
-    .editor, .preview {
+    .editor,
+    .preview {
         border-color: #666;
         background: #333;
         color: white;

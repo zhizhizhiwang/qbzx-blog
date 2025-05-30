@@ -102,7 +102,7 @@ class RemoteFile {
             date: this.date,
             content: this.content,
             owner: this.owner,
-            likes: this.likes
+            likes: this.likes,
         }));
     }
 

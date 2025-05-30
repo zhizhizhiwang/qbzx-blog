@@ -33,7 +33,7 @@ export default async function DashboardPage({
   const { userId } = await auth();
   const user = await currentUser();
 
-  if (!userId || !user) {
+  if (!userId || !user || !user.username) {
     return (
       <div className={styles.container}>
         <Title text="请登录" subtitle="请登录以访问文章编辑功能" />
@@ -80,7 +80,7 @@ export default async function DashboardPage({
   return (
     <div className={styles.container}>
       <Title text="文章编辑" subtitle="支持 Markdown 和 LaTeX" />
-      <Editor initialKey={fileKey} />
+      <Editor initialKey={fileKey} username={user.username} />
     </div>
   );
 }
