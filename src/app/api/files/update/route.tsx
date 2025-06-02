@@ -16,6 +16,11 @@ export async function PUT(request: Request) {
             return new NextResponse("缺少必要参数", { status: 400 });
         }
 
+        // 设置上传文章长度上限
+        if(content) {
+            
+        }
+
         const result = await db.prepare(`
             UPDATE files 
             SET title = ?, content = ?, date = ?
