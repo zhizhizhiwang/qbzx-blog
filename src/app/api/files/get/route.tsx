@@ -1,7 +1,6 @@
 import { db } from "@/app/binding";
 import { NextResponse } from "next/server";
 import { FileData } from "@/lib/file";
-import { link } from "fs";
 export const runtime = "edge";
 
 export async function GET(request: Request) {

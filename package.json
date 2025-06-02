@@ -25,6 +25,7 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "katex": "^0.16.22",
+    "lz-string": "^1.5.0",
     "motion": "^12.15.0",
     "next": "^15.3.2",
     "next-auth": "^5.0.0-beta.27",
