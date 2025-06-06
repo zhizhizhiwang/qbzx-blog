@@ -1,16 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
-import { unified } from 'unified';
+import Convert from "@/lib/markdownConvert";
 import { motion } from 'framer-motion';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeFormat from 'rehype-format';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
-import rehypeMathJaxSvg from 'rehype-mathjax/svg';
-import rehypeStringify from 'rehype-stringify';
-import rehypeRaw from 'rehype-raw';
 // import wikiLinkPlugin from "@flowershow/remark-wiki-link";
 import RemoteFile from '@/lib/file';
 import styles from '@/css/editor.module.css';
@@ -45,18 +36,7 @@ export default function Editor({ initialKey, username }: EditorProps) {
     // 实时预览
     useEffect(() => {
         const renderPreview = async () => {
-            const html = await unified()
-                .use(remarkParse)
-                .use(remarkGfm)
-                .use(remarkMath)
-                .use(remarkRehype, { allowDangerousHtml: true })
-                .use(rehypeRaw)
-                .use(rehypeHighlight)
-                .use(rehypeMathJaxSvg)
-                .use(rehypeFormat)
-                .use(rehypeStringify)
-                //                .use(wikiLinkPlugin)
-                .process(content);
+            const html = await Convert(content);
 
             setPreview(html.toString());
         };
