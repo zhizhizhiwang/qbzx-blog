@@ -12,6 +12,8 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeRaw from 'rehype-raw';
 import remarkMermaid from 'remark-mermaidjs';
 
+export const runtime = "edge";
+
 export default async function markdownConvert(markdown: string): Promise<string> {
     const html_content = await unified()
         .use(remarkParse)
