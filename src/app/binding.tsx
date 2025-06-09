@@ -30,6 +30,9 @@ function createDatabaseConnection(): D1Database {
                 if (isCloudflareEnvironment()) {
                     throw new DatabaseError("数据库连接测试失败: " + error.message);
                 }
+                const isDbBindingAvailable = false; 
+            } finally {
+                const isDbBindingAvailable = true; 
             }
         };
 

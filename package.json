@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "vercel-build": "next build",
+    "prebuild": "ts-node src/script/main.ts",
     "pages:build": "npx @cloudflare/next-on-pages",
     "preview": "npm run pages:build && wrangler pages dev",
     "deploy": "npm run pages:build && wrangler pages deploy",
-    "dev": "next dev --turbopack",
+    "dev": "ts-node src/script/main.ts && next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -55,7 +56,8 @@
     "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^9.27.0",
     "eslint-config-next": "^15.3.2",
-    "typescript": "^5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "vercel": "39.1.1"
   },
   "engines": {

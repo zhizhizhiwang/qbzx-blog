@@ -27,6 +27,5 @@ export default async function markdownConvert(markdown: string): Promise<string>
         .use(rehypeFormat, { blanks: ['body', 'head'], indent: '\t' })
         .use(rehypeStringify)
         .process(markdown);
-
     return String(html_content);
 }

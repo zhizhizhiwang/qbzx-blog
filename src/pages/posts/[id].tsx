@@ -18,6 +18,7 @@ interface TestPageProps {
 
 export let metadata: Metadata
 
+export const runtime = "nodejs";
 
 export default function TestPage({ id, content, title, date, author, tags }: TestPageProps) {
     // 生成 metadata
@@ -123,6 +124,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths,
-        fallback: false,
+        fallback: true,
     };
 };
