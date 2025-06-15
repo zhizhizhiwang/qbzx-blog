@@ -1,6 +1,4 @@
 //src/lib/file.tsx
-import { D1Database } from '@cloudflare/workers-types';
-import { db } from "@/app/binding"
 
 export interface FileData {
     key: string;
@@ -57,7 +55,7 @@ class RemoteFile {
             }
         });
         if (!respone.ok) {
-            throw new Error(`Failed to load file: ${respone.statusText}`);
+            throw new Error(`Failed to load file: ${await respone.text()} (${respone.status})`);
         }
         const data: FileData = await respone.json();
         this.title = data.title;
@@ -88,7 +86,7 @@ class RemoteFile {
 
         if(!response.ok)
         {
-            throw new Error('更新请求失败' + response.statusText);
+            throw new Error('更新请求失败: ' + await response.text() + ' (' + response.status + ')');
         }
 
         

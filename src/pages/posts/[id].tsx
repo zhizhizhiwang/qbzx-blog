@@ -108,11 +108,10 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
 export const getStaticPaths: GetStaticPaths = async () => {
     const fs = await require('fs');
     const path = await require('path');
-    const matter = await require('gray-matter');
     const postsDirectory = path.join('public', 'posts');
-    const filenames = fs.readdirSync(postsDirectory);
+    const filenames = fs.readdirSync(postsDirectory) as string[];
 
-    const paths = filenames.map((filename: string) => {
+    const paths = filenames.filter(filename => filename.endsWith('.md')).map((filename: string) => {
 
         return {
             params: {
@@ -124,6 +123,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths,
-        fallback: true,
+        fallback: false,
     };
 };

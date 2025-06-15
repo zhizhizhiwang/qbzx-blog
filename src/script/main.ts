@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { db } from '@/app/binding';
+
 
 console.log("prebuild script running...");
 const postsDirectory = path.join('public', 'posts');

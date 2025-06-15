@@ -2,13 +2,14 @@
   "name": "qbzx-blog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "vercel-build": "next build",
-    "prebuild": "ts-node src/script/main.ts",
+    "prebuild": "node --loader ts-node/esm ./src/script/main.ts",
     "pages:build": "npx @cloudflare/next-on-pages",
     "preview": "npm run pages:build && wrangler pages dev",
     "deploy": "npm run pages:build && wrangler pages deploy",
-    "dev": "ts-node src/script/main.ts && next dev --turbopack",
+    "dev": "node --loader ts-node/esm ./src/script/main.ts && next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -43,6 +44,7 @@
     "remark-mermaidjs": "^7.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
+    "tsconfig-paths": "^4.2.0",
     "unified": "^11.0.5",
     "uuid": "^11.1.0",
     "wrangler": "^4.16.1"

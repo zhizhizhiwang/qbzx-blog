@@ -8,6 +8,7 @@ import { find_by_owner} from "./finder"
 import CreateFileButton from './CreateFileButton';
 import { FileData } from '@/lib/file';
 import { NextResponse } from 'next/server'
+import DeleteFileButton from './DeleteFileButton';
 
 export const runtime = 'edge';
 export const metadata = {
@@ -65,11 +66,13 @@ export default async function DashboardPage({
                       {file.title}
                     </div>
                   </Link>
+                  <DeleteFileButton fileKey={file.key} className={edit_styles.button} />
                 </li>
               ))
             }
             <li>
               <CreateFileButton userId={userId} className={edit_styles.button} />
+              
             </li>
           </ul>
       </div>

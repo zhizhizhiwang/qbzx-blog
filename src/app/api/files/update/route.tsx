@@ -34,7 +34,7 @@ export async function PUT(request: Request) {
         ).run();
 
         if (result.meta.changes === 0) {
-            return new NextResponse("文件未找到或无权限更新", { status: 404 });
+            return new NextResponse("文件未找到或无权限更新", { status: 403 });
         }
 
 

@@ -197,6 +197,34 @@ a.secondary {
   gap: 2rem;
 }
 
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.fileItem:hover {
+  background-color: var(--gray-alpha-100);
+  color: #0070f3;
+  /* 悬停时改变背景色和文字颜色 */
+}
+
+.fileItem button {
+  text-align: center;
+  /*不换行 */
+  text-wrap: nowrap;
+}
+
+.fileItem button:hover {
+  background-color: var(--gray-alpha-200);
+  color: #e80a0a;
+  /* 悬停时改变按钮背景色和文字颜色 */
+}
+
+
 .githubIcon {
   width: 20px;
   height: 20px;
