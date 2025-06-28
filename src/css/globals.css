@@ -43,12 +43,12 @@ a {
 
 @font-face {
   font-family: 'Sarasa Mono Slab SC';
-  src: url('/font/SarasaMonoSlabSC-Regular.ttf') format('truetype');
+  src: url('/font/SarasaMonoSlabSC-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Sarasa Mono Slab SC Italic';
-  src: url('/font/SarasaMonoSlabSC-Italic.ttf') format('truetype');
+  src: url('/font/SarasaMonoSlabSC-Italic.woff2') format('woff2');
 }
 
 @font-face {

@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import localFont from "next/font/local";
 
 const SarasaFont = localFont({
-    src: "../../public/font/SarasaMonoSlabSC-Regular.ttf",
+    src: "../../public/font/SarasaMonoSlabSC-Regular.woff2",
     variable: "--font-mono",
 });
 
