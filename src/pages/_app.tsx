@@ -9,7 +9,7 @@ import localFont from "next/font/local";
 export const runtime = "experimental-edge";
 
 const SarasaFont = localFont({
-    src: "../../public/font/SarasaMonoSlabSC-Regular.ttf",
+    src: "../../public/font/SarasaMonoSlabSC-Regular.woff2",
     variable: "--font-mono",
 });
 
