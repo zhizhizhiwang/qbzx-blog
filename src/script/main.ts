@@ -13,10 +13,20 @@ const allPosts = filenames.map((filename) => {
     const fullPath = path.join(postsDirectory, filename);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const matterResult = matter(fileContents);
-    return {
+    const tags = matterResult.data.tags || "";
+    const tagsArray = Array.isArray(tags) ? tags : tags.split(',').map(tag => tag.trim());
+
+    const fullData = {
         id: filename.replace(/\.md$/, ''),
-        ...matterResult.data,
+        key: filename.replace(/\.md$/, ''),
+        tags: tagsArray,
+        title: matterResult.data.title || "无标题",
+        date: matterResult.data.date || new Date().toISOString(),
+        content: matterResult.content.trim() || "",
+        owner: matterResult.data.author || "unkown",
     };
+
+    return fullData;
 });
 
 fs.writeFileSync(

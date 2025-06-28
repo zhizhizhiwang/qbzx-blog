@@ -1,0 +1,72 @@
+.card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 10rem;
+}
+
+.card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    transform: translateY(-2px) scale(1.01);
+}
+
+.card_title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card_content {
+    max-height: 16rem;
+    max-width: 20rem;
+    flex: 1;
+    color: #333;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap:break-word;
+    word-break:normal; 
+}
+
+.card_tags {
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+.card_tag {
+    background-color: #e0e0e0;
+    border-radius: 0.25rem;
+    color: #333;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+}
+
+.cards {
+    display: inline-flex;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #23272f;
+        border-color: #444950;
+        color: #f8f9fa;
+    }
+    .card_content {
+        color: #e0e0e0;
+    }
+
+    .card_tag {
+        background-color: #444950;
+        color: #f8f9fa;
+    }
+}

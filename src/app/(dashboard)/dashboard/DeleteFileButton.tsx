@@ -30,7 +30,7 @@ export default function DeleteFileButton({ fileKey, className: originClassName }
             }
 
             alert('删除成功');
-            router.refresh(); // 或 router.push('/dashboard') 跳转到列表页
+            router.refresh();
         } catch (error: any) {
             alert('删除失败: ' + error.message);
         } finally {

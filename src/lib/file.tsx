@@ -1,6 +1,14 @@
 //src/lib/file.tsx
 
-export interface FileData {
+export type FileData = {
+    /*
+     * key: string;
+     * title: string;
+     * date: string;
+     * content: string;
+     * owner: string;
+     * likes: number; 
+    */ 
     key: string;
     title: string;
     date: string;

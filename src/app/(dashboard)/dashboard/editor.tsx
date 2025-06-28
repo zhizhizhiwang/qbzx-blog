@@ -299,7 +299,7 @@ export default function Editor({ initialKey, username }: EditorProps) {
                         className={styles.textarea}
                     />
                 </div>
-                <div className={`${styles.preview} markdown-body`}>
+                <div className={`${styles.preview} markdown-body markdown-edited`}>
                     <div dangerouslySetInnerHTML={{ __html: preview }} />
                 </div>
             </div>
