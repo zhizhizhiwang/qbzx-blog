@@ -35,6 +35,7 @@ export default function pageList() {
                         return file.tags.includes("文章") || !file.tags.includes("--no-show");
                     }
                 }
+                order={{orderBy: "date", desc: false}}
             />
         </>
     )
