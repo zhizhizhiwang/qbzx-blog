@@ -32,17 +32,17 @@ export default function Home() {
           <div className={styles.ctas}>
             <a
               className={styles.primary}
-              href="/posts"
+              href="/pagespace"
               rel="noopener noreferrer"
             >
-              文章列表
+              文章广场
             </a>
             <a
-              href="/about"
+              href="/dashboard"
               rel="noopener noreferrer"
               className={styles.secondary}
             >
-              关于
+              文章编辑
             </a>
           </div>
         <Footer />

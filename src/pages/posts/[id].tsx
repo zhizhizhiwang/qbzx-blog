@@ -50,9 +50,9 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                 <Sidebar
                     page="主页"
                     title="Qbzx bbs"
-                    author={[author]}
-                    items={["文章广场", "文章列表", "关于"]}
-                    hrefs={["/pagespace", "/posts", "/about"]}
+                    author={["zhizhizhiwang"]}
+                    items={["文章广场", "文章列表", "关于", "登录"]}
+                    hrefs={["/pagespace", "/posts", "/about", "/login"]}
                 />
                 <div className={styles.content}>
                     <Title text={title} subtitle={"by: " + author} />
