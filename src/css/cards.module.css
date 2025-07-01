@@ -67,7 +67,7 @@
     display: grid;
     grid-template-columns: repeat(var(--max-line-item, 3), 1fr);
     gap: 1.5rem;
-    width: 80% !important;
+    width: 100% !important;
     max-width: 100vw;
     box-sizing: border-box;
     padding: 0 1rem; 
@@ -75,7 +75,7 @@
 
 .cards > * {
     box-sizing: border-box;
-    width: 80% !important;
+    width: 100% !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -98,6 +98,11 @@
     .cards {
         grid-template-columns: 1fr !important; 
         padding: 0 0.5rem;
+        width: 80% !important;
+    }
+
+    .cards > * {
+        width: 80% !important;
     }
 
     .card {
