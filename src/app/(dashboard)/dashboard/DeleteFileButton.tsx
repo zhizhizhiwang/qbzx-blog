@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import styles from "@/css/page.module.css";
 import { useRouter } from 'next/navigation';
+import Alert from '@/lib/Alert';
 
 interface DeleteFileButtonProps {
     fileKey: string;
@@ -10,6 +11,7 @@ interface DeleteFileButtonProps {
 
 export default function DeleteFileButton({ fileKey, className: originClassName }: DeleteFileButtonProps) {
     const [isLoading, setIsLoading] = useState(false);
+    const [alertMsg, setAlertMsg] = useState<string | null>(null);
     const router = useRouter();
 
     const handleDelete = async () => {
@@ -29,22 +31,25 @@ export default function DeleteFileButton({ fileKey, className: originClassName }
                 throw new Error(msg);
             }
 
-            alert('删除成功');
+            setAlertMsg('删除成功');
             router.refresh();
         } catch (error: any) {
-            alert('删除失败: ' + error.message);
+            setAlertMsg('删除失败: ' + error.message);
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <button
-            onClick={handleDelete}
-            disabled={isLoading}
-            className={`${styles.saveButton} ${originClassName || ''}`}
-        >
-            {isLoading ? '删除中...' : '删除文件'}
-        </button>
+        <>
+            <button
+                onClick={handleDelete}
+                disabled={isLoading}
+                className={`${styles.saveButton} ${originClassName || ''}`}
+            >
+                {isLoading ? '删除中...' : '删除文件'}
+            </button>
+            {alertMsg && <Alert message={alertMsg} onClose={() => setAlertMsg(null)} />}
+        </>
     );
 }

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import styles from "@/css/page.module.css";
 import { useRouter } from 'next/navigation';
+import Alert from '@/lib/Alert';
 
 interface CreateFileButtonProps {
     userId: string;
@@ -10,6 +11,7 @@ interface CreateFileButtonProps {
 
 export default function CreateFileButton({ userId, className: originClassName}: CreateFileButtonProps) {
     const [isLoading, setIsLoading] = useState(false);
+    const [alertMsg, setAlertMsg] = useState<string | null>(null);
     const router = useRouter();
 
     const handleClick = async () => {
@@ -30,19 +32,22 @@ export default function CreateFileButton({ userId, className: originClassName}: 
             router.push(`/dashboard?key=${key}`);
         } catch (error) {
             console.error('创建文件失败:', error);
-            alert('创建文件失败: ' + error.message);
+            setAlertMsg('创建文件失败: ' + error.message);
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <button 
-            onClick={handleClick} 
-            disabled={isLoading}
-            className={`${styles.saveButton} ${originClassName || ''}`}
-        >
-            {isLoading ? '创建中...' : '新建文件'}
-        </button>
+        <>
+            <button 
+                onClick={handleClick} 
+                disabled={isLoading}
+                className={`${styles.saveButton} ${originClassName || ''}`}
+            >
+                {isLoading ? '创建中...' : '新建文件'}
+            </button>
+            {alertMsg && <Alert message={alertMsg} onClose={() => setAlertMsg(null)} />}
+        </>
     );
 }

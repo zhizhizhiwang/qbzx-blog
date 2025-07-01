@@ -51,8 +51,8 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                     page="主页"
                     title="Qbzx bbs"
                     author={[author]}
-                    items={["文章列表", "关于"]}
-                    hrefs={["/posts", "/about"]}
+                    items={["文章广场", "文章列表", "关于"]}
+                    hrefs={["/pagespace", "/posts", "/about"]}
                 />
                 <div className={styles.content}>
                     <Title text={title} subtitle={"by: " + author} />

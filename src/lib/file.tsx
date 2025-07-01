@@ -14,7 +14,7 @@ export type FileData = {
     date: string;
     content: string;
     owner: string;
-    likes: number;
+    likes: string;
 }
 
 export const runtime = 'edge';
@@ -46,7 +46,7 @@ class RemoteFile {
     public date: string;
     public content: string;
     public owner: string;
-    public likes: number;
+    public likes: string[];
 
     constructor(key: string) {
         this.key = key;
@@ -70,7 +70,7 @@ class RemoteFile {
         this.date = data.date;
         this.content = data.content;
         this.owner = data.owner;
-        this.likes = data.likes;
+        this.likes = data.likes.split(',');
         this.saveToLocalStorage();
     }
 
@@ -107,8 +107,6 @@ class RemoteFile {
             title: this.title,
             date: this.date,
             content: this.content,
-            owner: this.owner,
-            likes: this.likes,
         }));
     }
 
@@ -120,8 +118,6 @@ class RemoteFile {
             this.title = parsedData.title;
             this.date = parsedData.date;
             this.content = parsedData.content;
-            this.owner = parsedData.owner;
-            this.likes = parsedData.likes;
         }
 
         this.saveToLocalStorage();

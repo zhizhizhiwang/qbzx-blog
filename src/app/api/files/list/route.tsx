@@ -46,7 +46,7 @@ export async function GET(request: Request) {
             date: dateString,
             content: useContent,
             owner: owner || "unkown",
-            likes: 0, // 本地文件没有 likes 字段
+            likes: [],
             tags: Array.isArray(tags) ? tags : (tags ? tags.split(',').map(tag => tag.trim()) : [])
         };
     });
@@ -65,7 +65,7 @@ export async function GET(request: Request) {
             date: dateString,
             content: useContent,
             owner: owner,
-            likes: likes || 0,
+            likes: likes.split(','),
             tags: tags.filter(tag => !tag.startsWith('--')) // 过滤掉控制标签
         };
     });
@@ -90,6 +90,6 @@ export type FileListItem = {
     date: string;
     content: string;
     owner: string;
-    likes: number;
+    likes: string[];
     tags: string[];
 };

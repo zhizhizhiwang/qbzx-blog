@@ -10,6 +10,13 @@
     flex-direction: column;
     gap: 1rem;
     min-width: 10rem;
+    width: 100%;
+}
+
+.card_content > * {
+    transition: color 0.2s, background-color 0.2s;
+    background-color: transparent !important;
+    
 }
 
 .card:hover {
@@ -25,7 +32,6 @@
 
 .card_content {
     max-height: 16rem;
-    max-width: 20rem;
     flex: 1;
     color: #333;
     font-size: 1rem;
@@ -33,14 +39,19 @@
     text-overflow: ellipsis;
     word-wrap:break-word;
     word-break:normal; 
+    background: transparent;
+    padding: 0.3rem 0.5rem;
+    border: 1mm ridge rgba(176, 197, 205, 0.703);
 }
 
 .card_tags {
     display: inline-flex;
     gap: 0.5rem;
+    padding-top: 0.3rem;
 }
 
 .card_tag {
+    
     background-color: #e0e0e0;
     border-radius: 0.25rem;
     color: #333;
@@ -50,8 +61,8 @@
 }
 
 .cards {
-    display: inline-flex;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(var(--max-line-item, 3), 1fr); 
     gap: 1.5rem;
 }
 

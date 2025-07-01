@@ -14,7 +14,7 @@
   /* grid-template-rows: 20px 1fr 20px; */ /* 注释掉 grid 的行模板 */
   align-items: center; /* 水平居中 */
   /* justify-items: center; */ /* 移除垂直方向的居中 */
-  min-height: 200vh;
+  min-height: 100vh;
   overflow: visible;
   padding: 80px;
   gap: 64px;
@@ -403,6 +403,25 @@ a.secondary {
   padding: 5px;
 }
 
+.meta {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.3rem;
+  font-size: 1.2rem;
+  width: 90%;
+}
+
+.meta > * {
+  padding: 0 4px;
+}
+
+.meta_right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 2rem;
+}
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
@@ -465,6 +484,13 @@ a.secondary {
   .sidebar_right {
     width: 100%;
     justify-content: center;
+  }
+
+  .meta_right {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
   }
 
 }

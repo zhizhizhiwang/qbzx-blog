@@ -10,6 +10,7 @@ import "highlight.js/styles/github.css";
 import 'github-markdown-css/github-markdown.css';
 import matter from 'gray-matter';
 export const runtime = 'edge';
+import Alert from '@/lib/Alert';
 
 interface EditorProps {
     initialKey: string;
@@ -30,6 +31,7 @@ export default function Editor({ initialKey, username }: EditorProps) {
     const [localSaveSuccess, setLocalSaveSuccess] = useState(false);
     const [isLocalLoading, setIsLocalLoading] = useState(false);
     const [localLoadSuccess, setLocalLoadSuccess] = useState(false);
+    const [alertMsg, setAlertMsg] = useState<string | null>(null);
 
     const file = new RemoteFile(key);
 
@@ -115,7 +117,7 @@ export default function Editor({ initialKey, username }: EditorProps) {
             setTimeout(() => setSaveSuccess(false), 1000);
         } catch (error) {
             console.error('Failed to save:', error);
-            alert('保存失败：' + error.message);
+            setAlertMsg('保存失败：' + error.message);
             setIsSaving(false);
         }
     };
@@ -146,7 +148,7 @@ export default function Editor({ initialKey, username }: EditorProps) {
             setTimeout(() => setLoadSuccess(false), 1000);
         } catch (error) {
             console.error('加载失败:', error);
-            alert('加载失败：' + error.message);
+            setAlertMsg('加载失败：' + error.message);
             setIsLoading(false);
         }
     };
@@ -303,6 +305,7 @@ export default function Editor({ initialKey, username }: EditorProps) {
                     <div dangerouslySetInnerHTML={{ __html: preview }} />
                 </div>
             </div>
+            {alertMsg && <Alert message={alertMsg} onClose={() => setAlertMsg(null)} />}
         </div>
     );
 }
