@@ -17,8 +17,8 @@ export async function PUT(request: Request) {
         }
 
         // 设置上传文章长度上限
-        if(content) {
-            
+        if (content && new TextEncoder().encode(content).length > 1024 * 20) {
+            return new NextResponse("内容过大", { status: 413 });
         }
 
         const result = await db.prepare(`
@@ -34,7 +34,7 @@ export async function PUT(request: Request) {
         ).run();
 
         if (result.meta.changes === 0) {
-            return new NextResponse("文件未找到或无权限更新", { status: 404 });
+            return new NextResponse("文件未找到或无权限更新", { status: 403 });
         }
 
 

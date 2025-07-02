@@ -1,16 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
-import { unified } from 'unified';
+import Convert from "@/lib/markdownConvert";
 import { motion } from 'framer-motion';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeFormat from 'rehype-format';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
-import rehypeMathJaxSvg from 'rehype-mathjax/svg';
-import rehypeStringify from 'rehype-stringify';
-import rehypeRaw from 'rehype-raw';
 // import wikiLinkPlugin from "@flowershow/remark-wiki-link";
 import RemoteFile from '@/lib/file';
 import styles from '@/css/editor.module.css';
@@ -19,6 +10,7 @@ import "highlight.js/styles/github.css";
 import 'github-markdown-css/github-markdown.css';
 import matter from 'gray-matter';
 export const runtime = 'edge';
+import Alert from '@/lib/Alert';
 
 interface EditorProps {
     initialKey: string;
@@ -39,24 +31,14 @@ export default function Editor({ initialKey, username }: EditorProps) {
     const [localSaveSuccess, setLocalSaveSuccess] = useState(false);
     const [isLocalLoading, setIsLocalLoading] = useState(false);
     const [localLoadSuccess, setLocalLoadSuccess] = useState(false);
+    const [alertMsg, setAlertMsg] = useState<string | null>(null);
 
     const file = new RemoteFile(key);
 
     // 实时预览
     useEffect(() => {
         const renderPreview = async () => {
-            const html = await unified()
-                .use(remarkParse)
-                .use(remarkGfm)
-                .use(remarkMath)
-                .use(remarkRehype, { allowDangerousHtml: true })
-                .use(rehypeRaw)
-                .use(rehypeHighlight)
-                .use(rehypeMathJaxSvg)
-                .use(rehypeFormat)
-                .use(rehypeStringify)
-                //                .use(wikiLinkPlugin)
-                .process(content);
+            const html = await Convert(content);
 
             setPreview(html.toString());
         };
@@ -135,7 +117,7 @@ export default function Editor({ initialKey, username }: EditorProps) {
             setTimeout(() => setSaveSuccess(false), 1000);
         } catch (error) {
             console.error('Failed to save:', error);
-            alert('保存失败：' + error.message);
+            setAlertMsg('保存失败：' + error.message);
             setIsSaving(false);
         }
     };
@@ -166,7 +148,7 @@ export default function Editor({ initialKey, username }: EditorProps) {
             setTimeout(() => setLoadSuccess(false), 1000);
         } catch (error) {
             console.error('加载失败:', error);
-            alert('加载失败：' + error.message);
+            setAlertMsg('加载失败：' + error.message);
             setIsLoading(false);
         }
     };
@@ -319,10 +301,11 @@ export default function Editor({ initialKey, username }: EditorProps) {
                         className={styles.textarea}
                     />
                 </div>
-                <div className={`${styles.preview} markdown-body`}>
+                <div className={`${styles.preview} markdown-body markdown-edited`}>
                     <div dangerouslySetInnerHTML={{ __html: preview }} />
                 </div>
             </div>
+            {alertMsg && <Alert message={alertMsg} onClose={() => setAlertMsg(null)} />}
         </div>
     );
 }

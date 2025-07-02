@@ -4,17 +4,7 @@ import Sidebar from "@/item/sidebar";
 import styles from "@/css/page.module.css";
 import 'katex/dist/katex.min.css';
 import "highlight.js/styles/github.css";
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeHighlight from 'rehype-highlight'
-import rehypeFormat from 'rehype-format';
-import remarkMath from 'remark-math'
-import remarkGfm from 'remark-gfm';
-import rehypeMathJaxSvg from 'rehype-mathjax/svg';
-import rehypeStringify from 'rehype-stringify';
-import rehypeRaw from 'rehype-raw';
-import wikiLinkPlugin from "@flowershow/remark-wiki-link";
+import convert from "@/lib/markdownConvert";
 import type { Metadata } from 'next'
 
 interface TestPageProps {
@@ -28,6 +18,7 @@ interface TestPageProps {
 
 export let metadata: Metadata
 
+export const runtime = "nodejs";
 
 export default function TestPage({ id, content, title, date, author, tags }: TestPageProps) {
     // 生成 metadata
@@ -59,14 +50,14 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                 <Sidebar
                     page="主页"
                     title="Qbzx bbs"
-                    author={[author]}
-                    items={["文章列表", "关于"]}
-                    hrefs={["/posts", "/about"]}
+                    author={["zhizhizhiwang"]}
+                    items={["文章广场", "文章列表", "关于", "登录"]}
+                    hrefs={["/pagespace", "/posts", "/about", "/login"]}
                 />
                 <div className={styles.content}>
                     <Title text={title} subtitle={"by: " + author} />
                     <span>更新时间: {date} 标签: {tags.join(" ")}</span>
-                    <div className={`${styles.content} markdown-body`} dangerouslySetInnerHTML={{ __html: content }} />
+                    <div className={`${styles.content} markdown-body markdown-edited`} dangerouslySetInnerHTML={{ __html: content }} />
                 </div>
             </div>
         </div>
@@ -100,18 +91,7 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
 
     const result_tags = tags.filter(tag => !tag.startsWith('--'));
 
-    const html_content = await unified()
-    .use(remarkParse)   
-    .use(remarkGfm)
-    .use(remarkMath)
-    .use(remarkRehype, {allowDangerousHtml: true})
-    .use(rehypeRaw)
-    .use(rehypeHighlight)
-    .use(rehypeMathJaxSvg)
-    .use(rehypeFormat, {blanks: ['body', 'head'], indent: '\t'})
-    .use(rehypeStringify)
-    .use(wikiLinkPlugin)
-    .process(matterResult.content);
+    const html_content = await convert(matterResult.content);
 
     return {
         props: {
@@ -128,11 +108,10 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async ({ params }) 
 export const getStaticPaths: GetStaticPaths = async () => {
     const fs = await require('fs');
     const path = await require('path');
-    const matter = await require('gray-matter');
     const postsDirectory = path.join('public', 'posts');
-    const filenames = fs.readdirSync(postsDirectory);
+    const filenames = fs.readdirSync(postsDirectory) as string[];
 
-    const paths = filenames.map((filename: string) => {
+    const paths = filenames.filter(filename => filename.endsWith('.md')).map((filename: string) => {
 
         return {
             params: {

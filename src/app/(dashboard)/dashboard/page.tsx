@@ -6,8 +6,7 @@ import Title from "@/item/title";
 import Link from 'next/link';
 import { find_by_owner} from "./finder"
 import CreateFileButton from './CreateFileButton';
-import { FileData } from '@/lib/file';
-import { NextResponse } from 'next/server'
+import DeleteFileButton from './DeleteFileButton';
 
 export const runtime = 'edge';
 export const metadata = {
@@ -40,6 +39,11 @@ export default async function DashboardPage({
         <div className={styles.content}>
           <p>请先登录以访问文章编辑功能。</p>
         </div>
+        <div className={styles.ctas}>
+          <Link href="/login" className={styles.primary}>
+            登录/注册
+          </Link>
+        </div>
       </div>
     );
   }
@@ -65,11 +69,13 @@ export default async function DashboardPage({
                       {file.title}
                     </div>
                   </Link>
+                  <DeleteFileButton fileKey={file.key} className={edit_styles.button} />
                 </li>
               ))
             }
             <li>
               <CreateFileButton userId={userId} className={edit_styles.button} />
+              
             </li>
           </ul>
       </div>

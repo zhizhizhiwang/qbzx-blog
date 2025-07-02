@@ -21,11 +21,11 @@ export default function BlogListPage({ allPostsData }: BlogListPageProps) {
                     page="主页"
                     title="Qbzx bbs"
                     author={["zhizhizhiwang"]}
-                    items={["文章列表", "关于"]}
-                    hrefs={["/posts", "/about"]}
+                    items={["文章广场", "文章列表", "关于", "登录"]}
+                    hrefs={["/pagespace", "/posts", "/about", "/login"]}
                 />
                 <div className={styles.content}>
-                    <Title text='所有文章' />
+                    <Title text='所有文章' subtitle='只有静态的收录文章可见'/>
                         <ul className={styles.postList}>
                             {allPostsData.map(({ id, href }) => (
                                 <li key={id}>

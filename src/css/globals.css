@@ -40,3 +40,36 @@ a {
     color-scheme: dark;
   }
 }
+
+@font-face {
+  font-family: 'Sarasa Mono Slab SC';
+  src: url('/font/SarasaMonoSlabSC-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Sarasa Mono Slab SC Italic';
+  src: url('/font/SarasaMonoSlabSC-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "jetbrains-mono";
+  src: url('/font/JetBrainsMono-Regular.woff2') format('woff2'),
+}
+
+@font-face {
+  font-family: 'jetbrains-mono-italic';
+  src: url('/font/JetBrainsMono-Italic.woff2') format('woff2'),;
+}
+
+.markdown-edited p, pre, table, h1, h2, h3, h4, h5, h6, ul, ol, li {
+  font-family: 'Sarasa Mono Slab SC', 'Microsoft YaHei', Arial, sans-serif !important;
+}
+
+.markdown-edited blockquote em{
+  font-family: 'Sarasa Mono Slab SC Italic', 'Microsoft YaHei', Arial, sans-serif !important;
+  font-style: italic !important;
+}
+
+.markdown-edited code, .markdown-edited pre {
+  font-family: 'jetbrains-mono', 'Sarasa Mono Slab SC', 'Microsoft YaHei', Arial, sans-serif !important;
+}

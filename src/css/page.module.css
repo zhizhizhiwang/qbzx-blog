@@ -14,7 +14,7 @@
   /* grid-template-rows: 20px 1fr 20px; */ /* 注释掉 grid 的行模板 */
   align-items: center; /* 水平居中 */
   /* justify-items: center; */ /* 移除垂直方向的居中 */
-  min-height: 200vh;
+  min-height: 100vh;
   overflow: visible;
   padding: 80px;
   gap: 64px;
@@ -104,9 +104,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  gap: 32px;
   grid-row-start: 2;
-  min-height: 80%;
 }
 
 .main ol {
@@ -196,6 +194,34 @@ a.secondary {
   justify-content: center;
   gap: 2rem;
 }
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.fileItem:hover {
+  background-color: var(--gray-alpha-100);
+  color: #0070f3;
+  /* 悬停时改变背景色和文字颜色 */
+}
+
+.fileItem button {
+  text-align: center;
+  /*不换行 */
+  text-wrap: nowrap;
+}
+
+.fileItem button:hover {
+  background-color: var(--gray-alpha-200);
+  color: #e80a0a;
+  /* 悬停时改变按钮背景色和文字颜色 */
+}
+
 
 .githubIcon {
   width: 20px;
@@ -375,6 +401,25 @@ a.secondary {
   padding: 5px;
 }
 
+.meta {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.3rem;
+  font-size: 1.2rem;
+  width: 90%;
+}
+
+.meta > * {
+  padding: 0 4px;
+}
+
+.meta_right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 2rem;
+}
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
@@ -396,8 +441,9 @@ a.secondary {
 
 @media (max-width: 768px) {
   .page {
-    padding: 32px;
-    padding-bottom: 80px;
+    padding: 2px !important;
+    gap: 0px;
+    width: 95vw;
   }
 
   .main {
@@ -437,6 +483,13 @@ a.secondary {
   .sidebar_right {
     width: 100%;
     justify-content: center;
+  }
+
+  .meta_right {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
   }
 
 }

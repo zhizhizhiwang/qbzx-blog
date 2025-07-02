@@ -1,14 +1,20 @@
 //src/lib/file.tsx
-import { D1Database } from '@cloudflare/workers-types';
-import { db } from "@/app/binding"
 
-export interface FileData {
+export type FileData = {
+    /*
+     * key: string;
+     * title: string;
+     * date: string;
+     * content: string;
+     * owner: string;
+     * likes: number; 
+    */ 
     key: string;
     title: string;
     date: string;
     content: string;
     owner: string;
-    likes: number;
+    likes: string;
 }
 
 export const runtime = 'edge';
@@ -40,7 +46,7 @@ class RemoteFile {
     public date: string;
     public content: string;
     public owner: string;
-    public likes: number;
+    public likes: string[];
 
     constructor(key: string) {
         this.key = key;
@@ -57,14 +63,14 @@ class RemoteFile {
             }
         });
         if (!respone.ok) {
-            throw new Error(`Failed to load file: ${respone.statusText}`);
+            throw new Error(`Failed to load file: ${await respone.text()} (${respone.status})`);
         }
         const data: FileData = await respone.json();
         this.title = data.title;
         this.date = data.date;
         this.content = data.content;
         this.owner = data.owner;
-        this.likes = data.likes;
+        this.likes = data.likes.split(',');
         this.saveToLocalStorage();
     }
 
@@ -88,7 +94,7 @@ class RemoteFile {
 
         if(!response.ok)
         {
-            throw new Error('更新请求失败' + response.statusText);
+            throw new Error('更新请求失败: ' + await response.text() + ' (' + response.status + ')');
         }
 
         
@@ -101,8 +107,6 @@ class RemoteFile {
             title: this.title,
             date: this.date,
             content: this.content,
-            owner: this.owner,
-            likes: this.likes,
         }));
     }
 
@@ -114,8 +118,6 @@ class RemoteFile {
             this.title = parsedData.title;
             this.date = parsedData.date;
             this.content = parsedData.content;
-            this.owner = parsedData.owner;
-            this.likes = parsedData.likes;
         }
 
         this.saveToLocalStorage();

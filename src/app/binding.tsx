@@ -20,22 +20,6 @@ function createDatabaseConnection(): D1Database {
         console.log("binding d1 database")
         const database = binding<D1Database>("DB");
 
-        // 测试数据库连接
-        const testConnection = async () => {
-            try {
-                await database.prepare('SELECT 1').first();
-            } catch (error) {
-                // throw new DatabaseError(`数据库连接测试失败: ${error.message}`);
-                console.error("数据库连接测试失败:", error);
-                if (isCloudflareEnvironment()) {
-                    throw new DatabaseError("数据库连接测试失败: " + error.message);
-                }
-            }
-        };
-
-        // 执行连接测试
-        testConnection().catch(console.error);
-
         return database;
     } catch (error) {
         console.error("数据库初始化错误:", error);

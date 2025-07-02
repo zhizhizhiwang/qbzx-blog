@@ -1,21 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "@/css/globals.css";
 import 'github-markdown-css/github-markdown.css';
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import localFont from "next/font/local";
 
 export const runtime = "experimental-edge";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const SarasaFont = localFont({
+    src: "../../public/font/SarasaMonoSlabSC-Regular.woff2",
+    variable: "--font-mono",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -30,7 +27,7 @@ type AppPropsWithLayout = AppProps & {
 export default function RootLayout({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <html lang="zh-Hans">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${SarasaFont.className} antialiased`}>
           <Component {...pageProps} />
       </body>
     </html>
