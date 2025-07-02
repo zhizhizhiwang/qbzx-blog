@@ -6,8 +6,6 @@ import Title from "@/item/title";
 import Link from 'next/link';
 import { find_by_owner} from "./finder"
 import CreateFileButton from './CreateFileButton';
-import { FileData } from '@/lib/file';
-import { NextResponse } from 'next/server'
 import DeleteFileButton from './DeleteFileButton';
 
 export const runtime = 'edge';
@@ -40,6 +38,11 @@ export default async function DashboardPage({
         <Title text="请登录" subtitle="请登录以访问文章编辑功能" />
         <div className={styles.content}>
           <p>请先登录以访问文章编辑功能。</p>
+        </div>
+        <div className={styles.ctas}>
+          <Link href="/login" className={styles.primary}>
+            登录/注册
+          </Link>
         </div>
       </div>
     );
