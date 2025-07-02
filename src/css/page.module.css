@@ -443,7 +443,7 @@ a.secondary {
   .page {
     padding: 2px !important;
     gap: 0px;
-    width: 100vw;
+    width: 95vw;
   }
 
   .main {

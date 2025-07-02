@@ -34,9 +34,9 @@ export default function Footer() {
                 <li>
 
                     <center>
-                        此网站完全由学生运营
+                        <span>此网站完全由学生运营</span>
                         <br />
-                        本网站默认  采用
+                        <span>本网站默认采用</span>
                         <br />
                         <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
                             <Image
@@ -60,6 +60,9 @@ export default function Footer() {
                         />
                         想要加入或者提出建议?
                     </a>
+                    
+                </li>
+                <li>
                     <a href="/supporters" target="_blank" rel="noopener noreferrer">
                         <Image
                             src="/Git-Icon.svg"

@@ -44,8 +44,9 @@ export default function Home() {
             >
               文章编辑
             </a>
+            
           </div>
-        <Footer />
+          <Footer />
       </div>
     </>
   );
