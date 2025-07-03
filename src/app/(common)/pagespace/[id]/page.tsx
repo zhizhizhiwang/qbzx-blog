@@ -1,7 +1,7 @@
 import Title from "@/item/title";
 import styles from "@/css/page.module.css";
-import Markdown from "@/lib/Markdown";
-import VoteButton from "@/lib/VoteButton";
+import Markdown from "@/item/Markdown";
+import VoteButton from "@/item/VoteButton";
 import { FileData } from "@/lib/file";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";

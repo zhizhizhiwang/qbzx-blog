@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from "react";
 import { unified } from 'unified';
-import markdownConvert from "./markdownConvert";
+import markdownConvert from "@/lib/markdownConvert";
 import 'katex/dist/katex.min.css';
 import "highlight.js/styles/github.css";
 import 'github-markdown-css/github-markdown.css';

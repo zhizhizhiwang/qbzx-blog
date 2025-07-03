@@ -9,7 +9,7 @@ import 'katex/dist/katex.min.css';
 import "highlight.js/styles/github.css";
 import 'github-markdown-css/github-markdown.css';
 import matter from 'gray-matter';
-import Alert from '@/lib/Alert';
+import Alert from '@/item/Alert';
 
 export const runtime = 'edge';
 

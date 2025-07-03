@@ -1,7 +1,7 @@
 import cardstyles from "@/css/cards.module.css";
 import Link from "next/link";
 import { FileListItem } from "@/app/api/files/list/route";
-import Markdown from "@/lib/Markdown";
+import Markdown from "@/item/Markdown";
 import { headers } from "next/headers";
 
 const getOrigin = async () => {

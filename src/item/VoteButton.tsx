@@ -3,7 +3,7 @@ import itemStyle from "@/css/item.module.css";
 import { likesStruct } from "@/app/api/files/like/route";
 import { useState, useEffect } from "react";
 import { SetStateAction } from "react";
-import Alert from "./Alert";
+import Alert from "@/item/Alert";
 
 interface input {
     fileKey: string;

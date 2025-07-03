@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import styles from "@/css/page.module.css";
 import { useRouter } from 'next/navigation';
-import Alert from '@/lib/Alert';
+import Alert from '@/item/Alert';
 
 interface DeleteFileButtonProps {
     fileKey: string;
