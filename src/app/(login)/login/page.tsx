@@ -22,7 +22,7 @@ export default function Login() {
                 <Sidebar 
                     page="登录页面"
                     title="登录页面"
-                    author={["zhizhizhiwang"]}
+                    author={["contributor"]}
                 />
             </div>
             <div className={styles.content}>

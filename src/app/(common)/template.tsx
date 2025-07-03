@@ -8,7 +8,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
                 <Sidebar
                     page="主页"
                     title="Qbzx bbs"
-                    author={["zhizhizhiwang"]}
+                    author={["contributor"]}
                     items={["文章广场", "文章列表", "关于", "登录"]}
                     hrefs={["/pagespace", "/posts", "/about", "/login"]}
                 />
