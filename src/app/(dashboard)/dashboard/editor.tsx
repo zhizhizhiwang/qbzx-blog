@@ -9,8 +9,10 @@ import 'katex/dist/katex.min.css';
 import "highlight.js/styles/github.css";
 import 'github-markdown-css/github-markdown.css';
 import matter from 'gray-matter';
-export const runtime = 'edge';
 import Alert from '@/lib/Alert';
+
+export const runtime = 'edge';
+
 
 interface EditorProps {
     initialKey: string;

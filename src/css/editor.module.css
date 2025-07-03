@@ -133,3 +133,23 @@
         color: white;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .splitView {
+        grid-template-columns: 1fr;
+    }
+
+    .toolbar {
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr 1fr;
+        grid-template-areas:
+            "."
+            "."
+            ".";
+    }
+
+    .saveButton {
+        width: 100%;
+    }
+    
+}

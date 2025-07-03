@@ -1,15 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from "react";
 import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeFormat from 'rehype-format';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
-import rehypeMathJaxSvg from 'rehype-mathjax/svg';
-import rehypeStringify from 'rehype-stringify';
-import rehypeRaw from 'rehype-raw';
+import markdownConvert from "./markdownConvert";
 import 'katex/dist/katex.min.css';
 import "highlight.js/styles/github.css";
 import 'github-markdown-css/github-markdown.css';
@@ -26,32 +18,13 @@ export default function Markdown({ content, className }: MarkdownProps) {
     useEffect(() => {
         let cancelled = false;
         const render = async () => {
-            const result = await unified()
-                .use(remarkParse)
-                .use(remarkGfm)
-                .use(remarkMath)
-                .use(remarkRehype, { allowDangerousHtml: true })
-                .use(rehypeRaw)
-                .use(rehypeHighlight)
-                .use(rehypeMathJaxSvg)
-                .use(rehypeFormat, { blanks: ['body', 'head'], indent: '\t' })
-                .use(rehypeStringify)
-                .process(content);
-            if (!cancelled) setHtml(result.toString());
+            const result = await markdownConvert(content);
+            if (cancelled) return;
+            setHtml(result);
         };
         render();
         return () => { cancelled = true; };
     }, [content]);
-
-    useEffect(() => {
-        // 客户端渲染 mermaid
-        if (ref.current && html.includes('class="mermaid"')) {
-            import('mermaid').then((mermaid) => {
-                mermaid.default.initialize({ startOnLoad: false });
-                mermaid.default.init(undefined, ref.current!.querySelectorAll('.mermaid'));
-            });
-        }
-    }, [html]);
 
     return (
         <div

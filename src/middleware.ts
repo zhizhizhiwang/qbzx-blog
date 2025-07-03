@@ -5,7 +5,7 @@ const isPrivateRoute = createRouteMatcher(['/dashbord']);
 const loginUrl = "https://www.qbzx-blog.top/login";
 
 export default clerkMiddleware(async (auth, req) => {
-  const url = new URL(req.url)
+  const url = new URL(req.url);
   
   // 检查是否是 /login 路径
   if (url.pathname === '/login') {
@@ -13,17 +13,19 @@ export default clerkMiddleware(async (auth, req) => {
     if (url.hostname.endsWith('qbzx-blog.top') && url.hostname !== 'www.qbzx-blog.top' || 
         url.hostname.endsWith('blog.qbzx.dpdns.org')) {
       // 构建重定向URL
-      const redirectUrl = new URL(url.pathname, 'https://www.qbzx-blog.top')
+      const redirectUrl = new URL(url.pathname, 'https://www.qbzx-blog.top');
       // 保留所有查询参数
-      redirectUrl.search = url.search
+      redirectUrl.search = url.search;
       
-      return NextResponse.redirect(redirectUrl.toString())
+      return NextResponse.redirect(redirectUrl.toString());
     }
   }
 
   if (isPrivateRoute(req)) {
     await auth.protect()
-    return NextResponse.next()
+    const redirectUrl = new URL(loginUrl);
+    redirectUrl.search = url.search;
+    return NextResponse.redirect(redirectUrl.toString());
   }
 
 
