@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 
 import "@/css/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import localFont from "next/font/local";
-
 
 export const metadata: Metadata = {
     title: "Qbzx bbs",

@@ -1,15 +1,11 @@
-import { db } from "@/app/binding"
-import { NextResponse } from "next/server";
-import { auth, currentUser } from "@clerk/nextjs/server";
 import { Metadata } from "next";
 import FileList from "../FileList";
 import { FileListItem } from "@/app/api/files/list/route";
 import Title from "@/item/title";
 
-export const runtime = "edge"
+export const runtime = 'edge';
 
-
-const metadata: Metadata = {
+export const metadata: Metadata = {
     title: "文章广场",
     description: "文章列表",
     icons: {

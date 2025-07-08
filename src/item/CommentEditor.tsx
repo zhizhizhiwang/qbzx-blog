@@ -3,7 +3,7 @@ import Markdown from "@/item/Markdown";
 import React, { useState } from "react";
 import Alert from "@/item/Alert";
 import itemStyles from "@/css/item.module.css";
-import { CommentData, CommentStruct } from "@/app/api/comments/init";
+import type { CommentData, CommentStruct } from "@/app/api/comments/init";
 
 export default function CommentEditor({
     fileKey,

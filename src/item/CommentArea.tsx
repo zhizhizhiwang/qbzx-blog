@@ -2,7 +2,7 @@
 import CommentEditor from "./CommentEditor";
 import CommentItem from "./CommentItem";
 import itemStyles from "@/css/item.module.css"
-import { CommentStruct } from "@/app/api/comments/init";
+import type { CommentStruct } from "@/app/api/comments/init";
 import { useEffect, useState } from "react";
 import Alert from "./Alert";
 

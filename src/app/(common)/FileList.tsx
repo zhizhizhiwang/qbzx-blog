@@ -2,9 +2,6 @@ import cardstyles from "@/css/cards.module.css";
 import { FileListItem } from "@/app/api/files/list/route";
 import Card from './CardItem';
 import { headers } from "next/headers";
-import Alert from "@/item/Alert";
-
-const runtime = 'edge';
 
 interface FilterOptions {
     requiredTag?: string[];

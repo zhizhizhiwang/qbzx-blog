@@ -1,13 +1,9 @@
-import { CommentStruct, CommentData } from "@/app/api/comments/init";
-import { useState, useEffect } from "react";
+import type { CommentStruct } from "@/app/api/comments/init";
+import { useState } from "react";
 import Markdown from "./Markdown";
 import CommentOpthub from "./CommentOpthub";
 import itemStyles from "@/css/item.module.css"
 import Alert from "./Alert";
-
-const runtime = "edge";
-
-
 
 export default function CommentItem({ 
     comment, mode, userId, setReplyId, setComments, comments 

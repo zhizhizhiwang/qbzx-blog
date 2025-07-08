@@ -2,10 +2,9 @@ import Image from "next/image";
 import styles from "@/css/page.module.css";
 import Footer from "@/item/footer";
 import Title from "@/item/title";
-import Link from "next/link";
 import FileList from "./FileList";
 
-export const runtime = 'edge'; 
+export const runtime = 'edge';
 
 export default function Home() {
 
