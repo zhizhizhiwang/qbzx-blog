@@ -1,5 +1,5 @@
 name = "qbzx-blog"
-
+main = "src/index.ts"
 compatibility_date = "2024-11-11"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
@@ -11,7 +11,6 @@ NODE_VERSION = "22"
 
 # 生产环境配置
 [env.production]
-main = "src/index.ts"
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "qbzx_blog"
