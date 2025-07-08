@@ -1,7 +1,5 @@
 import Title from "@/item/title";
 
-export const runtime = 'edge'
-
 export default function About() {
     return (
         <>
