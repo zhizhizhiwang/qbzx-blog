@@ -11,6 +11,7 @@ NODE_VERSION = "22"
 
 # 生产环境配置
 [env.production]
+main = "src/index.ts"
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "qbzx_blog"
