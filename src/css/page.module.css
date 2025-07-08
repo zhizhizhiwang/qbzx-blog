@@ -57,11 +57,14 @@
 
   .sidebar ul li a {
     color: #eaeaea !important;
+    background-color: #1a1a1a !important;
   }
 
   .sidebar ul li a:hover {
     color: #90cdf4 !important;
+    background-color: #a5a5a5 !important;
   }
+
 
   .postList {
     background: transparent;
@@ -239,10 +242,10 @@ a.secondary {
 
 .content {
   flex: 1;
-  /* 主内容区占据剩余空间 */
   padding: 15px;
   padding-left: 5%;
   padding-right: 5%;
+  min-height: 50vh;
 }
 
 .sidebar {

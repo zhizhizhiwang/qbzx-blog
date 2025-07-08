@@ -55,7 +55,8 @@ export default function TestPage({ id, content, title, date, author, tags }: Tes
                     hrefs={["/pagespace", "/posts", "/about", "/login"]}
                 />
                 <div className={styles.content}>
-                    <Title text={title} subtitle={"by: " + author} />
+                    <Title text={title} subtitle={"by " + author} />
+                    <br/>
                     <span>更新时间: {date} 标签: {tags.join(" ")}</span>
                     <div className={`${styles.content} markdown-body markdown-edited`} dangerouslySetInnerHTML={{ __html: content }} />
                 </div>

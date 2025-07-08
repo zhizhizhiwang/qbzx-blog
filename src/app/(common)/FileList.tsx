@@ -2,6 +2,7 @@ import cardstyles from "@/css/cards.module.css";
 import { FileListItem } from "@/app/api/files/list/route";
 import Card from './CardItem';
 import { headers } from "next/headers";
+import Alert from "@/item/Alert";
 
 const runtime = 'edge';
 
@@ -74,7 +75,9 @@ export default async function FileList(props: FileListProps) {
         finalOrderFunc = order;
     } else if (order && typeof order === "object") {
         if (order.orderBy === 'likes') {
-            finalOrderFunc = (a, b) => (order.desc ? b.likes.length - a.likes.length : a.likes.length - b.likes.length);
+            finalOrderFunc = (a, b) => (order.desc ? 
+                b.likes.upvote.length + a.likes.downvote.length - a.likes.upvote.length - b.likes.downvote.length : 
+                a.likes.upvote.length + b.likes.downvote.length - (b.likes.upvote.length + a.likes.downvote.length));
         } else if (order.orderBy === 'date') {
             finalOrderFunc = (a, b) => (order.desc ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date));
         } else if (order.orderBy === 'title') {
@@ -114,7 +117,11 @@ export default async function FileList(props: FileListProps) {
         },
     });
 
-    if (!req.ok) throw new Error("获取文件列表失败");
+    if (!req.ok) {
+        
+        throw new Error("获取文件列表失败");
+    
+    }
     const data = await req.json();
     files = data as FileListItem[];
 

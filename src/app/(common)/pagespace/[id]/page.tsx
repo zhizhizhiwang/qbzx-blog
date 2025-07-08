@@ -2,17 +2,19 @@ import Title from "@/item/title";
 import styles from "@/css/page.module.css";
 import Markdown from "@/item/Markdown";
 import VoteButton from "@/item/VoteButton";
+import CommentArea from "@/item/CommentArea";
 import { FileData } from "@/lib/file";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 import matter from "gray-matter";
 
 export const runtime = "edge"
 
 export default async function page({ params }: { params: Promise<{ id: string }> }) {
     
-
+    const authObject = await auth()
     const resolvedParams = await params;
 
     const headerList = await headers();
@@ -63,7 +65,7 @@ export default async function page({ params }: { params: Promise<{ id: string }>
             </div>
 
             <Markdown content={useContent} className={styles.content} />
-            
+            <CommentArea fileKey={resolvedParams.id} userId={authObject.userId ?? ""}/>
         </>
     )
 

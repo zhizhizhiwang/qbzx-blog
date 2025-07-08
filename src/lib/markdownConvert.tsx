@@ -14,13 +14,14 @@ import remarkMermaid from 'remark-mermaidjs';
 
 export const runtime = "edge";
 
-export default async function markdownConvert(markdown: string): Promise<string> {
+export default async function markdownConvert(markdown: string, options?: { [key: string]: any }): Promise<string> {
+    console.log("markdownConvert", markdown.length, options);
     const html_content = await unified()
         .use(remarkParse)
         .use(remarkGfm)
         .use(remarkMath)
         .use(remarkMermaid)
-        .use(remarkRehype, { allowDangerousHtml: true })
+        .use(remarkRehype, { allowDangerousHtml: (options?.allowDangerousHtml ?? true) })
         .use(rehypeRaw)
         .use(rehypeHighlight)
         .use(rehypeMathJaxSvg)

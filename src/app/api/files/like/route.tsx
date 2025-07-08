@@ -72,7 +72,6 @@ export async function POST(request: Request) {
         }
         
     } catch (error) {
-        console.error("点赞失败:", error);
         return new NextResponse("服务器错误", { status: 500 });
     }
 }

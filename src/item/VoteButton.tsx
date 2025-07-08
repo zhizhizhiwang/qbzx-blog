@@ -77,7 +77,7 @@ async function cancelVote({fileKey, setLikes, setAlertMsg} : input) {
     setLikes(likes);
 }
 
-async function showInfo({likes, setAlertMsg} : {} & {likes: likesStruct, setAlertMsg: React.Dispatch<SetStateAction<string | null>>}) {
+async function showInfo({likes, setAlertMsg} : {likes: likesStruct, setAlertMsg: React.Dispatch<SetStateAction<string | null>>}) {
     setAlertMsg("upvote: " + likes.upvote.length + ", downvote: " + likes.downvote.length);
 }
 
@@ -115,12 +115,12 @@ export default function VoteButton({likes, fileKey} : {likes: likesStruct, fileK
     {screenWidth < 768 && <br />}
         <div>
             <span className={itemStyle.vote_button}>
-                <span style={{ borderRightStyle: "solid" }}>评分: {likeCount > 0 ? `+${likeCount}` : `${likeCount}`} </span>
+                <span style={{ borderRightStyle: "solid"}}>评分: {likeCount >= 0 ? `+${likeCount}` : `${likeCount}`} </span>
                 {screenWidth < 768 && <br />}
                 <button onClick={() => upvote({ fileKey, setLikes , setAlertMsg })}><span> + </span></button>
                 <button onClick={() => downvote({ fileKey, setLikes , setAlertMsg })}><span> - </span></button>
                 <button onClick={() => cancelVote({ fileKey, setLikes , setAlertMsg })}><span> x </span></button>
-                <button onClick={() => showInfo({ likes , setAlertMsg })}><span> i </span></button>
+                <button onClick={() => showInfo({ likes: userLikes , setAlertMsg })}><span> i </span></button>
             </span>
         </div>
         {alertMsg && <Alert message={alertMsg} onClose={() => setAlertMsg(null)} />}

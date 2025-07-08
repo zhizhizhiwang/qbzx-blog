@@ -3,6 +3,7 @@ import { D1Result } from '@cloudflare/workers-types';
 import { NextResponse } from "next/server";
 import { FileData } from "@/lib/file";
 import matter from "gray-matter";
+import { likesStruct } from "../like/route";
 
 export const runtime = 'edge';
 
@@ -65,7 +66,7 @@ export async function GET(request: Request) {
             date: dateString,
             content: useContent,
             owner: owner,
-            likes: likes.split(','),
+            likes: JSON.parse(likes || '{upvote: [], downvote: []}') as likesStruct,
             tags: tags.filter(tag => !tag.startsWith('--')) // 过滤掉控制标签
         };
     });
@@ -90,6 +91,6 @@ export type FileListItem = {
     date: string;
     content: string;
     owner: string;
-    likes: string[];
+    likes: likesStruct;
     tags: string[];
 };

@@ -7,6 +7,23 @@
     .alert {
         background-color: #333 !important;
     }
+
+    :root {
+        --front-color: #333 !important;
+        --background-color: #f0f0f0 !important;
+        --third-color: #888 !important;
+    }
+
+    .comment {
+        color: #f0f0f0 !important;
+    }
+
+}
+
+:root {
+    --front-color: #f0f0f0;
+    --background-color: #1a1a1a;
+    --third-color: #888;
 }
 
 .fs2 {
@@ -25,7 +42,6 @@
     /* 阴影效果 */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     /* 斜体 */
-    font-style: italic;
     /* 文字颜色 */
     color: #333;
     /* 添加一个过渡效果，使 hover 效果更平滑 */
@@ -33,11 +49,16 @@
     white-space: nowrap;
 }
 
+.title:active,
 .title:hover {
     /* 鼠标悬停时阴影效果更明显 */
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
     /* 稍微改变文字颜色 */
     color: #0070f3;
+}
+
+.title>.subtitle {
+    font-style: italic;
 }
 
 .menu_bar {
@@ -52,13 +73,14 @@
     display: block !important;
     position: relative;
     border-left-style: solid;
-    border-width:medium;
+    border-width: medium;
     max-height: 1.5rem;
-    gap: 8px;  /* 文字和箭头之间的间距 */
-    padding: 0 12px; 
+    gap: 8px;
+    /* 文字和箭头之间的间距 */
+    padding: 0 12px;
 }
 
-.menu_link {    
+.menu_link {
     display: block;
     background-color: #fff;
     padding: 14px 20px;
@@ -73,6 +95,7 @@
     background: #444;
     color: #FFF;
 }
+
 .menu_link:active {
     background: #444;
     color: #FFF;
@@ -91,8 +114,8 @@
     z-index: -1;
     overflow: hidden;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-    transition: max-height 0.5s ;
-    
+    transition: max-height 0.5s;
+
 }
 
 .menu_item:hover>.submenu {
@@ -120,11 +143,13 @@
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 15px solid black;
-    position: relative;  /* 改为相对定位 */
+    border-bottom: 15px solid var(--background-color);
+    position: relative;
+    /* 改为相对定位 */
     transform: rotate(0deg);
     transition: transform 0.5s;
-    margin-left: 4px;  /* 和文字之间添加间距 */
+    margin-left: 4px;
+    /* 和文字之间添加间距 */
 }
 
 .menu_item:active .arrow {
@@ -136,6 +161,7 @@
 }
 
 .vote_button {
+    font-family: 'jetbrains-mono', 'Sarasa Mono Slab SC';
     display: inline-flex;
     align-items: center;
     padding: 3px 3px 3px 3px;
@@ -145,30 +171,31 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.vote_button > button {
+.vote_button>button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.5rem;
+    min-width: 1.5rem;
     height: 1.5rem;
-    border: none;   
+    border: none;
     background-color: transparent;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition-duration: 0.5s;
 }
 
-.vote_button > button > span {
+.vote_button>button>span {
     font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', monospace;
     line-height: 1;
     font-size: 1.3rem;
-    font-style: normal; 
+    font-style: normal;
     vertical-align: middle;
-    line-height: 1;
     display: inline-block;
 }
 
-.vote_button > button:hover {
-    background-color: #f0f0f0;
+.vote_button>button:active,
+.vote_button>button:hover {
+    background-color: var(--front-color);
     transform: scale(1.1);
 }
 
@@ -176,23 +203,27 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* 让 message 水平居中 */
+    align-items: center;
+    /* 让 message 水平居中 */
     position: fixed;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     border: 1px solid #888;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    padding: 1.5rem 2rem 2.5rem 2rem; /* 底部多留空间给按钮 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem 2rem 2.5rem 2rem;
     z-index: 9999;
     min-width: 20rem;
     min-height: 10rem;
     position: fixed;
-    background-color: #f0f0f0; ;
+    background-color: #f0f0f0;
+    font-family: 'Sarasa Mono Slab SC', 'Consolas', monospace;
+    font-size: 1.3rem;
 }
 
-.alert_message, .alert > span {
+.alert_message,
+.alert>span {
     flex: 1;
     display: flex;
     align-items: center;
@@ -202,27 +233,218 @@
     overflow: auto;
 }
 
-.alert > * {
+.alert>* {
     transition-duration: 0.5s;
 }
 
-.alert > button {
-    position: absolute;
+.alert>*>button,
+.alert>button {
     right: 1.5rem;
     bottom: 1.2rem;
     background-color: transparent;
-    padding:  0.5rem 1rem;
-}
-
-.alert > button:hover {
-    background-color: #f0f0f0;
-    transform: scale(1.1);
+    padding: 0.5rem 1rem;
     transition-duration: 0.5s;
 }
 
-.alert > title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+.alert>*>button:hover,
+.alert>*>button:active,
+.alert>button:active,
+.alert>button:hover {
+    background-color: var(--front-color);
+    transform: scale(1.1);
 }
 
+.alert>.alert_title {
+    border: none;
+    justify-content: flex-start;
+}
+
+.comment {
+    border-top: deepskyblue 5px solid;
+    display: flex;
+    flex-direction: column;
+    min-width: 20rem;
+    min-height: 10rem;
+}
+
+.comment_editor {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 1rem 0px;
+    grid-template-areas:
+        "left left right right"
+        "but but but but";
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1px;
+    background-color: var(--front-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment_editor>.left {
+    grid-area: left;
+}
+
+.comment_editor>.right {
+    grid-area: right;
+}
+
+.comment_item>.comment_editor {
+    /*
+    * edit mode
+    */
+
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 1rem 0px;
+    grid-template-areas:
+        "left right"
+        "but but";
+}
+
+.comment_item>.comment_editor>.but {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 2rem;
+    grid-template-areas:
+        ". .";
+    grid-area: but;
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .comment_editor {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        padding: auto;
+    }
+
+
+    .comment_info {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+}
+
+.comment_preview {
+    height: 10rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--front-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment_editor>textarea {
+    height: 10rem;
+    padding: 1rem;
+    border: 1px solid var(--third-color);
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 1rem;
+}
+
+.comment_editor>.comment_preview {
+    background-color: color-mix(in srgb, color var(--front-color), color var(--third-color));
+}
+
+.comment_editor>.but {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 2rem;
+    grid-template-areas:
+        ". . . .";
+    grid-area: but;
+    height: 100%;
+}
+
+.comment_editor>.but>button {
+    background-color: var(--front-color);
+    color: var(--background-color);
+    border: var(--third-color) 1px solid;
+    line-height: 2rem;
+    min-height: 2rem;
+    padding: 0 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: 'Sarasa Mono Slab SC', 'jetbrains-mono', 'Consolas', monospace;
+    transition-duration: 0.5s;
+}
+
+.comment_editor>.but>button:hover,
+.comment_editor>.but>button:active {
+    background-color: var(--front-color);
+    transform: scale(1.1);
+}
+
+.comment_editor>textarea,
+.comment_preview {
+    height: 100%;
+    min-width: 100%;
+    width: 100%;
+    padding: 1rem;
+    min-height: 10rem;
+    box-sizing: border-box;
+}
+
+.comment_item {
+    display: grid;
+    min-width: 100%;
+    background-color: var(--front-color);
+    font-size: 0.7rem;
+}
+
+.comment_item>.comment_preview {
+    min-height: 0rem;
+    border-radius: 0px;
+    box-shadow: none;
+    border-bottom: var(--background-color) 1px solid;
+}
+
+.comment_info {
+    display: inline-flex;
+    font-size: 0.8rem;
+    font-family: 'Sarasa Mono Slab SC';
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.3rem;
+    width: 90%;
+    min-height: 1.5rem;
+    max-height: 3rem;
+}
+
+.comment_info>.left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 1rem;
+    margin-right: auto;
+
+}
+
+.comment_info>.right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.comment_info>.right>.vote_button {
+    border: none;
+    margin: 0 0 0 0;
+    background-color: transparent;
+    color: var(--background-color);
+}

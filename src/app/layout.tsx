@@ -4,11 +4,6 @@ import "@/css/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import localFont from "next/font/local";
 
-const SarasaFont = localFont({
-    src: "../../public/font/SarasaMonoSlabSC-Regular.woff2",
-    variable: "--font-mono",
-});
-
 
 export const metadata: Metadata = {
     title: "Qbzx bbs",
@@ -25,7 +20,7 @@ export default function RootLayout({
     return (
         <html lang="zh-Hans">
             <ClerkProvider>
-                <body className={`${SarasaFont.className} antialiased`}>
+                <body className={`antialiased`}>
                     {children}
                 </body>
             </ClerkProvider>

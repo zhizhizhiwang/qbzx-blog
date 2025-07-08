@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FileListItem } from "@/app/api/files/list/route";
 import Markdown from "@/item/Markdown";
 import { headers } from "next/headers";
+import { likesStruct } from "../api/files/like/route";
 
 const getOrigin = async () => {
     const headerList = await headers();
@@ -56,7 +57,7 @@ export default async function CardItem({ file, controlOptions }: {
                     ))}
                 </div>
                 {controlOptions?.showOwner && <div className={cardstyles.card_owner}>作者: {await useUserFullName(origin, owner)}</div>}
-                {controlOptions?.showLikes && <div className={cardstyles.card_likes}>点赞数: {likes.length}</div>}
+                {controlOptions?.showLikes && <div className={cardstyles.card_likes}>点赞数: {(likes.upvote?.length ?? 0) - (likes.downvote?.length ?? 0)}</div>}
                 {controlOptions?.showDate && <div className={cardstyles.card_date}>日期: {dateString}</div>}
             </Link>
     );

@@ -9,7 +9,7 @@ export default function Title({ text, subtitle = "" }: TitleProps) {
     return (
         <div className={`${style.title} ${style.fs2}`}>
             <h1>{text}</h1>
-            <p>{subtitle}</p>
+            <p  className={`${style.subtitle}`}>{subtitle}</p>
             <hr />
         </div>
     );
