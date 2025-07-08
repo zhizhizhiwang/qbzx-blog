@@ -2,10 +2,9 @@
 import CommentEditor from "./CommentEditor";
 import CommentItem from "./CommentItem";
 import itemStyles from "@/css/item.module.css"
-import { CommentStruct, CommentData } from "@/app/api/comments/init";
-import React, { useEffect, useState } from "react";
+import { CommentStruct } from "@/app/api/comments/init";
+import { useEffect, useState } from "react";
 import Alert from "./Alert";
-import Markdown from "./Markdown";
 
 function renderComments(comments: CommentStruct[], parentId: number | null, setReplyId, userId, setComments: React.Dispatch<React.SetStateAction<CommentStruct[]>>,) {
     return comments
@@ -39,16 +38,6 @@ export default function CommentArea(
             }
         });
     }, [fileKey]);
-
-
-    if (comments[0] === undefined) return (<>
-        <div className={itemStyles.comment}>
-            <Markdown content="还没有评论..." />
-            <br />
-            <CommentEditor fileKey={fileKey} replyTo={replyId} setReplyId={setReplyId} setComments={setComments} comments={comments} />
-            {alertMessage && <Alert message={alertMessage} onClose={() => setAlertMessage(null)} />}
-        </div>
-    </>);
 
     return (
         <div className={itemStyles.comment}>

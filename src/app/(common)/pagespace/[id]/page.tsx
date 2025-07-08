@@ -5,7 +5,6 @@ import VoteButton from "@/item/VoteButton";
 import CommentArea from "@/item/CommentArea";
 import { FileData } from "@/lib/file";
 import { headers } from "next/headers";
-import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import matter from "gray-matter";
@@ -26,7 +25,7 @@ export default async function page({ params }: { params: Promise<{ id: string }>
     if (res.status === 404) {
         redirect(`/posts/${resolvedParams.id}`);
     } else if (!res.ok) {
-        return NextResponse.json({ message: "获取文章失败" }, { status: 500 });
+        return <>文章列表获取失败</>;
     }
 
     const data: FileData = await res.json();
@@ -48,7 +47,6 @@ export default async function page({ params }: { params: Promise<{ id: string }>
                 downvote: parsedLikes.downvote || []
             };
         } catch (error) {
-            console.warn("解析 likes 字段失败:", error);
             return { upvote: [], downvote: [] };
         }
     })();
