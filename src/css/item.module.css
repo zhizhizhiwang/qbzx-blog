@@ -8,23 +8,13 @@
         background-color: #333 !important;
     }
 
-    :root {
-        --front-color: #333 !important;
-        --background-color: #f0f0f0 !important;
-        --third-color: #888 !important;
-    }
-
     .comment {
         color: #f0f0f0 !important;
     }
 
 }
 
-:root {
-    --front-color: #f0f0f0;
-    --background-color: #1a1a1a;
-    --third-color: #888;
-}
+
 
 .fs2 {
     font-size: 2rem;

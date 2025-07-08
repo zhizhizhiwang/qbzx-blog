@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from "@/app/binding";
 import { NextResponse } from "next/server";
 
-const runtime = "edge";
+export const runtime = "edge";
 
 export async function POST(request: Request) {
     const { userId } = await auth();

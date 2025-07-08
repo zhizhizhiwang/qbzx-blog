@@ -1,12 +1,18 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --front-color: #f0f0f0;
+  --background-color: #1a1a1a;
+  --third-color: #888;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --front-color: #333 !important;
+    --background-color: #f0f0f0 !important;
+    --third-color: #888 !important;
   }
 }
 
@@ -83,3 +89,4 @@ a {
 .markdown-edited code, .markdown-edited pre {
   font-family: 'jetbrains-mono', "Sarasa Ui SC", 'Microsoft YaHei', Arial, sans-serif !important;
 }
+
