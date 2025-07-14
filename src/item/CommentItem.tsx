@@ -60,7 +60,7 @@ export default function CommentItem({
 
             </>
         )
-    } else if (useMode === 'edit') {
+    } /* else if (useMode === 'edit') {
         return (
             <>
             <div className={itemStyles.comment_item}>
@@ -85,7 +85,7 @@ export default function CommentItem({
             </div>
             </>
         )
-    }
+    } */
 
 
 

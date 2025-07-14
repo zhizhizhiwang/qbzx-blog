@@ -168,9 +168,9 @@ export default function CommentOpthub({
                     <span className={itemStyles.vote_button}>
                         {userId === comment.author && 
                             <>
-                                <button style={{paddingLeft: "1rem"}} onClick={() => setUseMode("edit")}>
+                                {/* <button style={{paddingLeft: "1rem"}} onClick={() => setUseMode("edit")}>
                                     <span style={{fontSize: "1rem"}}>Edit</span>
-                                </button>
+                                </button> */}
                                 <button style={{paddingLeft: "1rem"}} onClick={() => {
                                     setAlertMessage("你确定要删除该评论吗? (无法恢复)");
                                     setAlertElement(<>
